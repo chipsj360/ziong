@@ -16,6 +16,9 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+
+import static org.springframework.security.config.Customizer.withDefaults;
+
 @EnableWebSecurity
 @Configuration
 @ComponentScan
@@ -51,28 +54,34 @@ public class SecurityConfig {
 
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        return http.csrf().disable()
-                .authorizeRequests()
-                .requestMatchers("/css/**","/images/**","/","/register", "/process_register","register_success","/js/**","/product_detail/**","/products-in-category/**")
-                .permitAll()
-                .and()
-                .authorizeRequests().requestMatchers("/admin-dashboard", "/customers", "/admin-orders").hasAuthority("ADMIN")
-                .and()
-                .formLogin()
-                .loginPage("/login")
-                .usernameParameter("email")
-                .successHandler(loginSuccessHandler)
-                .permitAll()
-                .and()
-                .logout()
-                .logoutSuccessUrl("/login?logout")
-                .and()
-                .exceptionHandling().accessDeniedPage("/403")
-                .and()
-                .build();
-
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        // @formatter:off
+        http
+                .authorizeHttpRequests((authorize) -> authorize
+                        .requestMatchers("/css/**", "/images/**", "/", "/signup", "/process-register", "/register_success", "/js/**", "/product_detail/**", "/products-in-category/**")
+                        .permitAll()
+                        .requestMatchers("/admin-dashboard", "/customers", "/admin-orders")
+                        .hasAuthority("ADMIN")
+                        .anyRequest().authenticated()
+                )
+                .httpBasic(withDefaults())
+                .formLogin(form->form
+                        .loginPage("/login")
+                        .usernameParameter("email")
+                        .successHandler(loginSuccessHandler)
+                        .permitAll()
+                )
+                .logout(logout -> logout
+                        .logoutSuccessUrl("/login?logout")
+                )
+                .exceptionHandling(exception -> exception
+                        .accessDeniedPage("/403")
+                );;
+        // @formatter:on
+        return http.build();
     }
+
+
 
 }
 

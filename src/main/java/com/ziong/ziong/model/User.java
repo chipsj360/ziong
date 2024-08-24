@@ -24,8 +24,7 @@ public class User {
     @Column(nullable = false,unique = true)
     private String email;
     private String password;
-    private boolean enabled;
-    private Date date;
+
 
     @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     @JoinTable(
