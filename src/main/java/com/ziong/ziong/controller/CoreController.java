@@ -30,4 +30,9 @@ public class CoreController {
       return "login";
     }
 
+    @GetMapping("/dashboard")
+    public String adminDasboard(){
+        return "dashboard";
+    }
+
 }
