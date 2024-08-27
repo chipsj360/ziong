@@ -14,7 +14,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class CoreController {
     @Autowired
     private UserService userService;
+
     @GetMapping("/")
+    public String index(){
+        return "index";
+    }
+
+    @GetMapping("/login")
     public String login(){
         return "login";
     }
