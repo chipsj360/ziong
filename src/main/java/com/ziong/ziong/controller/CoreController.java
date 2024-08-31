@@ -1,7 +1,9 @@
 package com.ziong.ziong.controller;
 
+import com.ziong.ziong.model.Product;
 import com.ziong.ziong.model.User;
 import com.ziong.ziong.model.dtos.UserDto;
+import com.ziong.ziong.service.ProductService;
 import com.ziong.ziong.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,10 +12,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.List;
+
 @Controller
 public class CoreController {
     @Autowired
     private UserService userService;
+
+    @Autowired
+    ProductService productService;
 
     @GetMapping("/")
     public String index(){
@@ -37,7 +44,10 @@ public class CoreController {
     }
 
     @GetMapping("/dashboard")
-    public String adminDasboard(){
+    public String adminDasboard(Model model){
+
+        List<Product> products = productService.getAllProduct();
+        model.addAttribute("products", products);
         return "dashboard";
     }
 

@@ -24,7 +24,12 @@ public class Product {
     private double costPrice;
     private double salePrice;
     private int currentQuantity;
-    private String sellerName;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
+    private User user;
+    @Lob
+    @Column(columnDefinition = "MEDIUMBLOB")
+    private  String image;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "category_id", referencedColumnName = "category_id")
