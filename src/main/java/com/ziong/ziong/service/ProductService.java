@@ -17,6 +17,7 @@ import java.util.Objects;
 
 @Service
 public class ProductService {
+    @Autowired
     private ProductRepository repo;
 
     @Autowired

@@ -1,6 +1,7 @@
 package com.ziong.ziong.controller;
 
 import com.ziong.ziong.model.Category;
+import com.ziong.ziong.model.Product;
 import com.ziong.ziong.model.dtos.ProductDto;
 import com.ziong.ziong.service.CategoryService;
 import com.ziong.ziong.service.ProductService;
@@ -40,10 +41,19 @@ public class ProductController {
                               @RequestParam("quantity") int currentQuantity,
                               @RequestParam("categories")Category category,
                               Principal principal)
-
     {
-        String username = principal.getName();
-        productService.saveProductToDB(file, name, desc, price,currentQuantity,category, username);
-        return "redirect:/dashboard";
+        try {
+            String username = principal.getName();
+            productService.saveProductToDB(file, name, desc, price, currentQuantity, category, username);
+            return "dashboard";
+        } catch (Exception e) {
+            // Log the error details
+            System.err.println("Error saving product: " + e.getMessage());
+            return "redirect:/error"; // Assuming you have an error view mapped
+        }
     }
+
+
+
+
 }

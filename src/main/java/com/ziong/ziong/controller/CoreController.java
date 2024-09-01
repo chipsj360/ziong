@@ -46,8 +46,7 @@ public class CoreController {
     @GetMapping("/dashboard")
     public String adminDasboard(Model model){
 
-        List<Product> products = productService.getAllProduct();
-        model.addAttribute("products", products);
+
         return "dashboard";
     }
 

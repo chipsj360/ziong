@@ -190,7 +190,7 @@
                         <p class="h4 mb-2 text-center fw-light">Add Product</p>
                     </div>
                     <div class="card-body">
-                        <form class=" border border-light p-5" action="/process_product" method="post"
+                        <form class=" border border-light p-5" th:action="@{/process_product}" method="post"
                               enctype="multipart/form-data">
 
                             <!-- Name -->
@@ -305,8 +305,7 @@
 <script src="/js/kaiadmin.min.js"></script>
 
 <!-- Kaiadmin DEMO methods, don't include it in your project! -->
-<script src="/js/setting-demo.js"></script>
-<script src="/js/demo.js"></script>
+
 <script>
     $("#lineChart").sparkline([102, 109, 120, 99, 110, 105, 115], {
       type: "line",
