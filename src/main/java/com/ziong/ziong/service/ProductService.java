@@ -3,6 +3,7 @@ package com.ziong.ziong.service;
 import com.ziong.ziong.model.Category;
 import com.ziong.ziong.model.Product;
 import com.ziong.ziong.model.User;
+import com.ziong.ziong.model.dtos.ProductDto;
 import com.ziong.ziong.respository.ProductRepository;
 import com.ziong.ziong.utils.ImageUpload;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,6 +52,40 @@ public class ProductService {
         p.setUser(user);
 
         repo.save(p);
+    }
+
+    public Product update (ProductDto productDto) {
+        try {
+            Product product = repo.getById(productDto.getId());
+
+            product.setName(productDto.getName());
+            product.setDescription(productDto.getDescription());
+            product.setSalePrice(productDto.getSalePrice());
+            product.setCostPrice(productDto.getCostPrice());
+            product.setCurrentQuantity(productDto.getCurrentQuantity());
+            product.setCategory(productDto.getCategory());
+            return repo.save(product);
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+
+    }
+
+    public ProductDto getById(Long id) {
+        Product product = repo.getById(id);
+        ProductDto productDto = new ProductDto();
+        productDto.setId(product.getId());
+        productDto.setName(product.getName());
+        productDto.setDescription(product.getDescription());
+        productDto.setCurrentQuantity(product.getCurrentQuantity());
+        productDto.setCategory(product.getCategory());
+        productDto.setSalePrice(product.getSalePrice());
+        productDto.setCostPrice(product.getCostPrice());
+        productDto.setImage(product.getImage());
+        productDto.setDeleted(product.is_deleted());
+        productDto.setActivated(product.is_activated());
+        return productDto;
     }
     public List<Product> getAllProduct()
     {
