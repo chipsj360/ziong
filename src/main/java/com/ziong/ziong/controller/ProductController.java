@@ -103,4 +103,11 @@ public class ProductController {
         return "products-in-category";
     }
 
+    @GetMapping("/product_detail/{productId}")
+    public String showProductDetails(@PathVariable("productId")Long id,
+                                     Model model){
+        Product product=productService.getProductById(id);
+        model.addAttribute("product",product);
+        return "product_details";
+    }
 }

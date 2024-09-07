@@ -98,4 +98,7 @@ public class ProductService {
     public List<Product> getProductsInCategory(Long categoryId) {
         return repo.getProductsInCategory(categoryId);
     }
+    public Product getProductById(Long id) {
+        return repo.getReferenceById(id);
+    }
 }
