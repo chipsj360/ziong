@@ -31,20 +31,11 @@
         <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" href="index.html">Home</a>
+                    <a class="nav-link active" href="#">Home</a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link active dropdown-toggle" href="#" id="profileDropdown1" role="button"
-                       data-bs-toggle="dropdown" aria-expanded="false">
-                        <span>Products</span>
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-end w-220px" aria-labelledby="profileDropdown1">
-                        <li><a class="dropdown-item  ">Construction</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item " href="/logout">Building</a></li>
-                    </ul>
+
+                <li class="nav-item">
+                    <a class="nav-link active" th:href="@{/products}">Products</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" href="#">Contact</a>
@@ -53,16 +44,16 @@
                     <a class="nav-link active" href="#">About</a>
                 </li>
                 <li class="nav-item px-3 d-flex">
-                    <a class="nav-link position-relative" href="">
+                    <a class="nav-link position-relative" th:href="@{/cart}">
                         <i class="fa fa-shopping-cart"></i>
                         <span
-                                class="position-absolute top-0 start-100 translate-middle rounded-pill badge bg-secondary badge-pill"></span>
+                                class="position-absolute top-0 start-100 translate-middle rounded-pill badge bg-secondary badge-pill">[[${session.totalItems == null} ? '0' : ${session.totalItems}]]</span>
                     </a>
                 </li>
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown" th:if="${#authorization.expression('isAuthenticated()')}">
                     <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button"
                        data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="fa fa-user-circle-o me-2"></i><span></span>
+                        <i class="fa fa-user-circle-o me-2"></i><span th:text="${#authentication.name}"></span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end w-220px" aria-labelledby="profileDropdown">
                         <li><a class="dropdown-item  ">Profile</a></li>
@@ -72,8 +63,8 @@
                         <li><a class="dropdown-item " href="/logout">Logout</a></li>
                     </ul>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link active">Login</a>
+                <li class="nav-item" th:unless="${#authorization.expression('isAuthenticated()')}">
+                    <a  th:href="@{/login}" class="nav-link active">Login</a>
                 </li>
             </ul>
         </div>
@@ -107,9 +98,12 @@
 
                         <!-- HTML !-->
                         <div class="d-flex">
+                            <form th:action="@{/add-to-cart}" method="post" >
                             <button class="prod-btn me-3" role="button"> Buy now <i
                                     class="bi bi-caret-down-square"></i></button>
-                            <button class="prod-btn" role="button"> Add to Cart <i class="bi bi-cart2"></i></button>
+                                <input type="hidden" th:value="${product.id}" name="id">
+                            <button class="prod-btn" role="button" type="submit"> Add to Cart <i class="bi bi-cart2"></i></button>
+                            </form>
                         </div>
                         <hr>
                     </div>
