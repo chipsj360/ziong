@@ -2,6 +2,7 @@ package com.ziong.ziong.controller;
 
 import com.ziong.ziong.model.Category;
 import com.ziong.ziong.model.Product;
+import com.ziong.ziong.model.dtos.CategoryDto;
 import com.ziong.ziong.model.dtos.ProductDto;
 import com.ziong.ziong.service.CategoryService;
 import com.ziong.ziong.service.ProductService;
@@ -81,6 +82,25 @@ public class ProductController {
         return "redirect:/view";
     }
 
+    @GetMapping("/products-in-category/{id}")
+    public String getProductsInCategory(@PathVariable("id") Long categoryId ,Model model){
+        Category category = categoryService.findById(categoryId);
+        List<CategoryDto> categories = categoryService.getCategoryAndProduct();
+        List<Product> products = productService.getProductsInCategory(categoryId);
+        model.addAttribute("category",category);
+        model.addAttribute("categories", categories);
+        model.addAttribute("products", products);
+        return "products-in-category";
+    }
 
+
+    @GetMapping("/products")
+    public String displayProducts(Model model){
+        List<Product> products = productService.getAllProduct();
+        List<CategoryDto> categories = categoryService.getCategoryAndProduct();
+        model.addAttribute("products", products);
+        model.addAttribute("categories", categories);
+        return "products-in-category";
+    }
 
 }

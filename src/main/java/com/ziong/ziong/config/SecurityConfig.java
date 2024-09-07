@@ -58,7 +58,9 @@ public class SecurityConfig {
         // @formatter:off
         http
                 .authorizeHttpRequests((authorize) -> authorize
-                        .requestMatchers("/css/**", "/images/**", "/", "/signup", "/process-register", "/register_success", "/js/**", "/product_detail/**", "/products-in-category/**")
+                        .requestMatchers("/css/**", "/images/**", "/", "/signup", "/process-register", "/register_success", "/js/**", "/products-in-category/**")
+                        .permitAll()
+                        .requestMatchers("/products/**","/products-in-category/**", "/product_detail/**")
                         .permitAll()
                         .requestMatchers("/dashboard", "/customers", "/process_product")
                         .hasAuthority("ADMIN")

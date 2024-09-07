@@ -4,6 +4,7 @@ import com.ziong.ziong.model.Category;
 import com.ziong.ziong.model.Product;
 import com.ziong.ziong.model.User;
 import com.ziong.ziong.model.dtos.ProductDto;
+import com.ziong.ziong.respository.CategoryRepository;
 import com.ziong.ziong.respository.ProductRepository;
 import com.ziong.ziong.utils.ImageUpload;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,9 @@ import java.util.Objects;
 public class ProductService {
     @Autowired
     private ProductRepository repo;
+
+    @Autowired
+    CategoryRepository categoryRepository;
 
     @Autowired
     private ImageUpload imageUpload;
@@ -90,5 +94,8 @@ public class ProductService {
     public List<Product> getAllProduct()
     {
         return repo.findAll();
+    }
+    public List<Product> getProductsInCategory(Long categoryId) {
+        return repo.getProductsInCategory(categoryId);
     }
 }

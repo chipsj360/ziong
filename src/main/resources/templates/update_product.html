@@ -190,17 +190,17 @@
                         <p class="h4 mb-2 text-center fw-light">Add Product</p>
                     </div>
                     <div class="card-body">
-                        <form class=" border border-light p-5" th:action="@{/process_product}" method="post"
-                              enctype="multipart/form-data">
+                        <form class=" border border-light p-5" th:action="@{/update-product/{id} (id = ${productDto.id})}" method="post"
+                              enctype="multipart/form-data"  th:object = "${productDto}">
 
                             <!-- Name -->
-                            <input type="text" name="pname" id="name" class="form-control mb-4"
+                            <input type="text" name="pname" id="name" th:field="*{name}" class="form-control mb-4"
                                    placeholder="Product Name" required>
 
                             <div class="form-group mb-4" >
                                 <label class="col-md-4 control-label " for="categories">PRODUCT CATEGORY</label>
                                 <div class="col-md-4">
-                                    <select id="categories" name="categories" class="form-control">
+                                    <select id="categories" name="categories" th:field="*{category}" class="form-control">
                                         <option th:value = "null">-SELECT-</option>
                                         <option th:each = "category : ${categories}"
                                                 th:value = "${category.id}"
@@ -211,20 +211,20 @@
                             </div>
 
                             <!-- Price -->
-                            <input type="text" name="price" id="price" class="form-control mb-4"
+                            <input type="text" name="price" id="price"  th:field="*{costPrice}" class="form-control mb-4"
                                    placeholder="Product Price" required>
                             <!-- Quantity-->
-                            <input type="text" name="quantity" id="quantity" class="form-control mb-4"
+                            <input type="text" name="quantity"  th:field="*{currentQuantity}" id="quantity" class="form-control mb-4"
                                    placeholder="Product Quantity" required>
 
 
                             <!-- Description -->
-                            <textarea class="form-control mb-4" id="desc" name="desc"
+                            <textarea class="form-control mb-4" id="desc" th:field="*{description}" name="desc"
                                       placeholder="Product Description" required>Product Description
                                  </textarea>
                             <div class="custom-file mb-4">
-                                <input type="file" name="file" class="custom-file-input"
-                                       id="customFile">
+                                <!--                                <input type="file"  name="imageProduct" class="custom-file-input"-->
+                                <!--                                       id="customFile">-->
                                 <button class="btn btn-info btn-block" type="submit"><i class="bi bi-upload"></i></button>
                             </div>
                             <!-- Sign in button -->

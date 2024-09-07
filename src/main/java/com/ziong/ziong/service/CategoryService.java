@@ -1,6 +1,7 @@
 package com.ziong.ziong.service;
 
 import com.ziong.ziong.model.Category;
+import com.ziong.ziong.model.dtos.CategoryDto;
 import com.ziong.ziong.respository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,5 +42,9 @@ public class CategoryService {
     }
     public List<Category> findAll() {
         return repo.findAll();
+    }
+
+    public List<CategoryDto> getCategoryAndProduct() {
+        return repo.getCategoryAndProduct();
     }
 }
