@@ -79,7 +79,7 @@ public class ProductController {
             e.printStackTrace();
             attributes.addFlashAttribute("error", "Failed to update!");
         }
-        return "redirect:/view";
+        return "redirect:/dashboard";
     }
 
     @GetMapping("/products-in-category/{id}")
@@ -110,4 +110,13 @@ public class ProductController {
         model.addAttribute("product",product);
         return "product_details";
     }
+    @GetMapping("/delete-product/{id}")
+    public String deleteProduct(@PathVariable("id") Long id)
+    {
+
+        productService.deleteProductById(id);
+        return "redirect:/dashboard";
+    }
+
+
 }

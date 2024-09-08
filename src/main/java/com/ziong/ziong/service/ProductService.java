@@ -101,4 +101,10 @@ public class ProductService {
     public Product getProductById(Long id) {
         return repo.getReferenceById(id);
     }
+
+    public void deleteProductById(Long id){
+        repo.deleteById(id);
+    }
+
+
 }
