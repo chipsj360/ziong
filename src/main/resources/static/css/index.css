@@ -1,6 +1,6 @@
 .hero-container{
     margin-top: 50px;
-    background-image: url('../images/1.jpg');
+    background-image: url('../images/Alloy-Steel.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: bottom;
@@ -42,4 +42,127 @@
 }
 .abt-img{
     width: 6vw;
+}
+
+.top .responsive-cell-block {
+  min-height: 75px;
+}
+
+.top .responsive-container-block {
+  min-height: 75px;
+  height: fit-content;
+  width: 100%;
+  padding-top: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 0px;
+  margin-right: auto;
+  margin-bottom: 0px;
+  margin-left: auto;
+  justify-content: flex-start;
+}
+
+.top .responsive-container-block.bigContainer {
+  padding-right: 30px;
+  padding-bottom: 10px;
+  padding-left: 30px;
+}
+
+.top .responsive-container-block.Container {
+  max-width: 1320px;
+  padding-top: 0px;
+  padding-right: 0px;
+  padding-bottom: 0px;
+  padding-left: 0px;
+  margin-top: 50px;
+  margin-right: auto;
+  margin-bottom: 50px;
+  margin-left: auto;
+}
+
+.top .responsive-cell-block.wk-desk-6.wk-ipadp-6.wk-tab-12.wk-mobile-12 {
+  padding-top: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+}
+
+.top .bigImg {
+  width: 100%;
+  object-fit: cover;
+  height: 100%;
+}
+
+.top .responsive-container-block.sideImgContainer {
+  width: 50%;
+  height: auto;
+  min-height: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 0px;
+  padding-right: 0px;
+  padding-bottom: 0px;
+  padding-left: 0px;
+}
+
+.top .responsive-cell-block.wk-desk-12.wk-ipadp-12.wk-tab-12.wk-mobile-12.side {
+  height: 50%;
+  min-height: auto;
+  padding-top: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+}
+
+.top .sideImg {
+  color: black;
+  width: 100%;
+  height: 100%;
+  padding-top: 0px;
+  padding-right: 0px;
+  padding-bottom: 0px;
+  padding-left: 0px;
+  object-fit: cover;
+}
+
+@media (max-width: 768px) {
+  .top .responsive-cell-block.wk-desk-12.wk-ipadp-12.wk-tab-12.wk-mobile-12.side {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 10px;
+    margin-left: 0px;
+  }
+
+  .top .responsive-container-block.sideImgContainer {
+    width: 100%;
+    flex-direction: column;
+    flex-wrap: nowrap;
+  }
+}
+
+@media (max-width: 500px) {
+  .top .responsive-container-block.bigContainer {
+    padding-top: 10px;
+    padding-right: 20px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+  }
+
+  .top .responsive-cell-block.wk-desk-6.wk-ipadp-6.wk-tab-12.wk-mobile-12 {
+    padding-top: 10px;
+    padding-right: 0px;
+    padding-bottom: 10px;
+    padding-left: 0px;
+  }
+
+  .top .responsive-cell-block.wk-desk-12.wk-ipadp-12.wk-tab-12.wk-mobile-12.side {
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+  }
 }
