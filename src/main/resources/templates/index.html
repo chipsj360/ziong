@@ -5,10 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home </title>
+
+    <!-- MDB and Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/css/customNavbar.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- MDB UI Kit CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.0/mdb.min.css" />    <link rel="stylesheet" href="/css/customNavbar.css">
     <link rel="stylesheet" href="/css/offcanvas-navbar.css">
     <link rel="stylesheet" href="/css/index.css">
     <link rel="stylesheet" href="/css/index-res.css">
@@ -30,17 +36,14 @@
         <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" href="#">Home</a>
+                    <a class="nav-link active" th:href="@{/products}">Home</a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link active" th:href="@{/products}">Products</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="#">Contact</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="#">About</a>
+                    <button type="submit" class="btn btn-secondary btn-block contactUsBtn">Contact Us</button>
                 </li>
                 <li class="nav-item px-3 d-flex">
                     <a class="nav-link position-relative" th:href="@{/cart}">
@@ -72,14 +75,15 @@
 <div class="main-container">
     <div class="hero-container d-flex justify-content-center">
         <div class="d-flex flex-column align-items-center justify-content-center w-50">
-            <h1 class="header"> Construction and Agricultural Equiptment Company</h1>
+            <h1 class="header"> CONSTRUCTION & AGRICULTURAL EQUIPMENTS COMPANY</h1>
             <div class="d-flex justify-content-center">
-                <button class="btn mt-4"> Shop Now </button>
+                <button type="submit" class="btn btn-dark btn-block mt-4 "> <h5> Shop Now</h5></button>
             </div>
         </div>
     </div>
     <div class="hot-deals d-flex flex-column p-5">
-        <h2 class="align-self-center"> Order Now </h2>
+        <h6 class="pb-4 align-self-center">OUR PRODUCTS</h6>
+        <h2 class="align-self-center"> MAKE YOUR ORDER</h2>
         <div class="deals-list row">
             <div class="col-12 col-lg-4">
                 <div class="card m-4">
@@ -87,54 +91,48 @@
                     <div class="p-3">
                         <h4> Equiptment Name </h4>
                         <h6> Category Name </h6>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus facilis mollitia eaque</p>
+                        <h6>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus facilis mollitia eaque</h6>
                     </div>
                 </div>
             </div>
             <div class="col-12 col-lg-4">
                 <div class="card m-4">
-                    <img class="list-item-img" src="/images/7.jpg" alt="list-item-img">
+                    <img class="list-item-img" src="/images/roof.jpeg" alt="list-item-img">
                     <div class="p-3">
                         <h4> Equiptment Name </h4>
                         <h6> Category Name </h6>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus facilis mollitia eaque
-                            nesciunt excepturi ut doloribus architecto hic consequuntur, libero explicabo fugiat,
-                            esse
-                            dolorem modi ratione, aliquid quasi ad? Ut! </p>
+                        <h6>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus facilis mollitia eaque</h6>
                     </div>
                 </div>
             </div>
             <div class="col-12 col-lg-4">
                 <div class="card m-4">
-                    <img class="list-item-img" src="/images/1.jpg" alt="list-item-img">
+                    <img class="list-item-img" src="/images/roof.jpeg" alt="list-item-img">
                     <div class="p-3">
                         <h4> Equiptment Name </h4>
                         <h6> Category Name </h6>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus facilis mollitia eaque
-                            nesciunt excepturi ut doloribus architecto hic consequuntur, libero explicabo fugiat,
-                            esse
-                            dolorem modi ratione, aliquid quasi ad? Ut! </p>
+                        <h6>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus facilis mollitia eaque</h6>
                     </div>
                 </div>
+            </div>
+            <div class="col-12 d-flex justify-content-center pt-3">
+                <button type="submit" class="btn btn-dark btn-block "  style="width: fit-content;"><h6>More Products </h6> </button>
             </div>
         </div>
-
     </div>
-    <div class="about-us m-4 mt-0">
+
+    <div class="about-us mt-0">
         <div class="row w-100">
-            <div class="col-12 col-lg-6">
-                <div class="d-flex justify-content-center">
-                    <div class="d-flex justify-content-center">
-                        <img class="abt-img" src="/images/white.png" alt="about">
+            <div class="col-12 col-lg-6 ps-5 pt-5">
+                <div class="d-flex flex-column justify-content-center">
+                    <h6 CLASS="mb-4">ABOUT US</h6>
+                <h1 class="mt-2">TRUST OUR SERVICES</h1>
+                <h6 class="abt-parag mt-2 mb-3">
+                    Ziong Limited is a reputable Zambian construction company, registered with PACRA, specializing in construction and general trading. We focus on providing practical, innovative solutions to meet the diverse needs of our clients. Committed to excellence, we take pride in delivering superior service and ensuring customer satisfaction on every project. Our passion drives us to go above and beyond, no matter the size or location of the work. Distance is never an obstacle – wherever our esteemed clients are, Ziong Limited is there, ready to serve with dedication and professionalism.
+                </h6> <div class="mt-4">
+                    <button type="button" class="btn btn-dark btn-block contactUsBtn" style="width: fit-content;"> <h6>Contact Us</h6> </button>
                     </div>
-                    <h1 class="">About Us</h1>
                 </div>
-                <h5 class="abt-parag mt-4">
-                    Ziong Limited is a Zambian Construction company registered with PACRA. The Principle
-                    Business activity is to carryout construction and general trading, Ziong Limited focuses on Providing Practical
-                    solutions to various needs our clients look for. Our deepest desire is to serve our esteemed Clients with
-                    passion and excellency where ever our esteemed customers are there we are. distance is not a barrier.
-                </h5>
             </div>
             <div class="col-12 col-lg-6 ">
                 <div class="top">
@@ -158,26 +156,27 @@
         </div>
     </div>
     <div class="about d-flex">
-        <div class="row w-100 ms-4">
-            <div class=" col-12 col-lg-7 d-flex flex-column justify-content-center">
-                <div class="p-4">
-                <h1 class="">About Us</h1>
-                <h4 class="">
-                    Ziong Limited is a Zambian Construction company registered with PACRA. The Principle
-                    Business activity is to carryout construction and general trading, Ziong Limited focuses on Providing Practical
-                    solutions to various needs our clients look for. Our deepest desire is to serve our esteemed Clients with
-                    passion and excellency where ever our esteemed customers are there we are. distance is not a barrier.
-                </h4>
-
+        <div class="row w-100">
+            <div class="col-12 col-lg-4 d-flex justify-content-center justify-content-lg-end">
+                <div class="d-flex flex-column justify-content-center p-5">
+                    <h1 class="">OUR VISION</h1>
+                    <div class="d-flex justify-content-center">
+                        <img class="abt-img" src="../images/white.png" alt="about">
+                    </div>
                 </div>
+            </div>
+            <div class=" col-12 col-lg-7 d-flex flex-column justify-content-center">
+                <h4 class="p-5">
+                    To build an organisation that will be able to meet and exceed expectations and ensure that our clients will have relevant and innovative products and services to propel their businesses/inteded purposes
+                </h4>
             </div>
         </div>
 
     </div>
 </div>
-<section class="footer">
+<section class="footer pt-5">
     <!-- Footer -->
-    <footer class="bg-body-tertiary text-center">
+    <footer class="bg-body-tertiary text-center" id="footerSection">
         <!-- Grid container -->
         <div class="container p-4">
             <!--Grid row-->
@@ -185,9 +184,9 @@
                 <!--Grid column-->
                 <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
                     <h5 class="text-uppercase">ZIONG LIMITED</h5>
-                    <p>
+                    <h6>
                         Ziong Limited, a Zambian construction company, provides practical solutions in construction and general trading, committed to serving clients with passion and excellence, regardless of location.
-                    </p>
+                    </h6>
                 </div>
                 <!--Grid column-->
 
@@ -197,12 +196,13 @@
 
                     <ul class="list-unstyled mb-0">
                         <li>
-                            Call:
-                            <ol>
-                                <li>+260 977 728 264</li>
-                                <li>+260 977 692 264</li>
-                            </ol>
-                            Email : ziong.ltd@gmail.com
+                        <li> <h6>+260 977 728 264</h6></li>
+                                <li><h6>
+                                    +260 977 692 264
+                                </h6></li>
+                        <li>
+                           <h6> Email : ziong.ltd@gmail.com</h6>
+                        </li>
                         </li>
                     </ul>
                 </div>
@@ -214,7 +214,7 @@
 
                     <ul class="list-unstyled">
                         <li>
-                            Plot 27/24, Manchinchi Road, Lusaka - Zambia
+                           <h6>Plot 27/24, Manchinchi Road, Lusaka - Zambia</h6>
                         </li>
                     </ul>
                 </div>
@@ -227,7 +227,7 @@
         <!-- Copyright -->
         <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05);">
             © 2024 Copyright:
-            <a class="text-body" href="https://mdbootstrap.com/">AvensusZambia.com</a>
+            <a class="text-body" href="https://mdbootstrap.com/">AvensusTechologyZambia.com</a>
         </div>
         <!-- Copyright -->
     </footer>
@@ -247,6 +247,17 @@
             if (!offcanvasCollapse.contains(event.target) && !navbarToggle.contains(event.target)) {
                 offcanvasCollapse.classList.remove("open");
             }
+        });
+    });
+
+   // Select all buttons with the class "contactUsBtn"
+    const contactUsButtons = document.querySelectorAll(".contactUsBtn");
+    const footerSection = document.getElementById("footerSection");
+
+    // Loop through each button and add a click event listener
+    contactUsButtons.forEach(function(button) {
+        button.addEventListener("click", function () {
+            footerSection.scrollIntoView({ behavior: "smooth" });
         });
     });
 </script>
