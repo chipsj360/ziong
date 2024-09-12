@@ -27,7 +27,8 @@ public class LoginSuccessHandler extends SavedRequestAwareAuthenticationSuccessH
 
         if (userDetails.hasRole("ADMIN")) {
             redirectURL = "/dashboard";
-        }  else if (userDetails.hasRole("CUSTOMER")) {
+
+        } else if (userDetails.hasRole("CUSTOMER")) {
             redirectURL = "/";
         }
 
@@ -35,4 +36,5 @@ public class LoginSuccessHandler extends SavedRequestAwareAuthenticationSuccessH
 
         response.sendRedirect(redirectURL);
     }
+
 }

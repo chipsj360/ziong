@@ -9,6 +9,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -32,33 +33,31 @@ public class SecurityConfig {
     }
 
     @Bean
-    public UserDetailsService userDetailsService(){
+    public CustomUserDetailsService customUserDetailsService() {
         return new CustomUserDetailsService();
     }
     @Bean
     public ServletWebServerFactory servletWebServerFactory() {
         return new TomcatServletWebServerFactory();
     }
-    @Bean
-    public AuthenticationProvider authenticationProvider(){
-        DaoAuthenticationProvider authProvider=new DaoAuthenticationProvider();
-        authProvider.setUserDetailsService(userDetailsService());
-        authProvider.setPasswordEncoder(bCryptPasswordEncoder());
-        return authProvider;
-    }
+
 
     @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration config)throws Exception{
-        return config.getAuthenticationManager();
+    public AuthenticationManager authManager(HttpSecurity http) throws Exception {
+        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+        authProvider.setUserDetailsService(customUserDetailsService());
+        authProvider.setPasswordEncoder(bCryptPasswordEncoder());
+
+        return new ProviderManager(authProvider);
     }
 
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         // @formatter:off
-        http
+        http.csrf((csrf) -> csrf.disable())
                 .authorizeHttpRequests((authorize) -> authorize
-                        .requestMatchers("/css/**", "/images/**", "/", "/signup", "/process-register", "/register_success", "/js/**", "/products-in-category/**")
+                        .requestMatchers("/css/**", "/images/**","/logout", "/", "/signup", "/process-register", "/register_success", "/js/**", "/products-in-category/**")
                         .permitAll()
                         .requestMatchers("/products/**","/products-in-category/**", "/product_detail/**")
                         .permitAll()
@@ -66,24 +65,18 @@ public class SecurityConfig {
                         .hasAuthority("ADMIN")
                         .anyRequest().authenticated()
                 )
-                .httpBasic(withDefaults())
+
                 .formLogin(form->form
                         .loginPage("/login")
                         .usernameParameter("email")
                         .successHandler(loginSuccessHandler)
                         .permitAll()
-                )
-                .logout(logout -> logout
-                        .logoutSuccessUrl("/login?logout")
-                )
-                .exceptionHandling(exception -> exception
-                        .accessDeniedPage("/403")
-                );;
+                );
+
+
         // @formatter:on
         return http.build();
     }
-
-
 
 }
 
