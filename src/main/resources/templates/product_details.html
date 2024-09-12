@@ -38,10 +38,7 @@
                     <a class="nav-link active" th:href="@{/products}">Products</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="#">Contact</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="#">About</a>
+                    <button type="submit" class="btn btn-secondary btn-block contactUsBtn">Contact Us</button>
                 </li>
                 <li class="nav-item px-3 d-flex">
                     <a class="nav-link position-relative" th:href="@{/cart}">
@@ -85,7 +82,7 @@
     <div class="hot-deals d-flex flex-column p-5">
         <div class="card p-4 d-flex flex-column justify-content-center">
             <div class="row d-flex">
-                <div class="col-6 d-flex flex-column justify-content-center">
+                <div class="col-6 d-flex flex-column justify-content-center list-img">
                     <img class="list-item-img" th:src="*{'data:image/jpeg;base64, '+ {product.image}}" alt="list-item-img">
                 </div>
                 <div class="col-6">
@@ -113,40 +110,35 @@
     </div>
 
 </div>
-<section class="footer">
+<section class="footer pt-5">
     <!-- Footer -->
-    <footer class="bg-body-tertiary text-center">
+    <footer class="bg-body-tertiary text-center" id="footerSection">
         <!-- Grid container -->
         <div class="container p-4">
             <!--Grid row-->
             <div class="row">
                 <!--Grid column-->
                 <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
-                    <h5 class="text-uppercase">Footer Content</h5>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iste atque ea quis
-                        molestias. Fugiat pariatur maxime quis culpa corporis vitae repudiandae
-                        aliquam voluptatem veniam, est atque cumque eum delectus sint!
-                    </p>
+                    <h5 class="text-uppercase">ZIONG LIMITED</h5>
+                    <h6>
+                        Ziong Limited, a Zambian construction company, provides practical solutions in construction and general trading, committed to serving clients with passion and excellence, regardless of location.
+                    </h6>
                 </div>
                 <!--Grid column-->
 
                 <!--Grid column-->
                 <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-                    <h5 class="text-uppercase">Links</h5>
+                    <h5 class="text-uppercase">Contact US</h5>
 
                     <ul class="list-unstyled mb-0">
                         <li>
-                            <a href="#!" class="text-body">Link 1</a>
-                        </li>
+                        <li> <h6>+260 977 728 264</h6></li>
+                        <li><h6>
+                            +260 977 692 264
+                        </h6></li>
                         <li>
-                            <a href="#!" class="text-body">Link 2</a>
+                            <h6> Email : ziong.ltd@gmail.com</h6>
                         </li>
-                        <li>
-                            <a href="#!" class="text-body">Link 3</a>
-                        </li>
-                        <li>
-                            <a href="#!" class="text-body">Link 4</a>
                         </li>
                     </ul>
                 </div>
@@ -154,20 +146,11 @@
 
                 <!--Grid column-->
                 <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-                    <h5 class="text-uppercase mb-0">Links</h5>
+                    <h5 class="text-uppercase mb-0">Find Us</h5>
 
                     <ul class="list-unstyled">
                         <li>
-                            <a href="#!" class="text-body">Link 1</a>
-                        </li>
-                        <li>
-                            <a href="#!" class="text-body">Link 2</a>
-                        </li>
-                        <li>
-                            <a href="#!" class="text-body">Link 3</a>
-                        </li>
-                        <li>
-                            <a href="#!" class="text-body">Link 4</a>
+                            <h6>Plot 27/24, Manchinchi Road, Lusaka - Zambia</h6>
                         </li>
                     </ul>
                 </div>
@@ -180,16 +163,17 @@
         <!-- Copyright -->
         <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05);">
             © 2024 Copyright:
-            <a class="text-body" href="https://mdbootstrap.com/">AvensusZambia.com</a>
+            <a class="text-body" href="https://mdbootstrap.com/">AvensusTechologyZambia.com</a>
         </div>
         <!-- Copyright -->
     </footer>
     <!-- Footer -->
 </section>
+
 <script src=" https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
 </script>
-<script src="./js/offcanvas-navbar.js"></script>
+<script src="/js/offcanvas-navbar.js"></script>
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         const navbarToggle = document.getElementById("navbarSideCollapse");
@@ -199,6 +183,17 @@
             if (!offcanvasCollapse.contains(event.target) && !navbarToggle.contains(event.target)) {
                 offcanvasCollapse.classList.remove("open");
             }
+        });
+    });
+
+   // Select all buttons with the class "contactUsBtn"
+    const contactUsButtons = document.querySelectorAll(".contactUsBtn");
+    const footerSection = document.getElementById("footerSection");
+
+    // Loop through each button and add a click event listener
+    contactUsButtons.forEach(function(button) {
+        button.addEventListener("click", function () {
+            footerSection.scrollIntoView({ behavior: "smooth" });
         });
     });
 </script>

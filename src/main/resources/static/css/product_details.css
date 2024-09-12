@@ -45,10 +45,7 @@
 .prod-btn:focus {
   opacity: .75;
 }
-
-
 /*Beginning of index css */
-
 .hero-container{
     margin-top: 50px;
     background-image: url('../img/1.jpg');
@@ -57,7 +54,6 @@
     background-position: bottom;
     width: 100%;
     height: 80vh;
-
 }
 .header{
     color: white;
@@ -73,10 +69,13 @@
 }
 .list-item-img{
     width: 100%;
-    height: 25vh;
-    object-fit: cover;
+    height: auto;
+    object-fit: contain;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
+}
+.list-img{
+    max-height: 40vh;
 }
 .card {
     border-radius: 20px;

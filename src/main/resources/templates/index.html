@@ -36,7 +36,7 @@
         <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" th:href="@{/products}">Home</a>
+                    <a class="nav-link active" th:href="@{/index}">Home</a>
                 </li>
 
                 <li class="nav-item">
@@ -58,11 +58,11 @@
                         <i class="fa fa-user-circle-o me-2"></i><span th:text="${#authentication.name}"></span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end w-220px" aria-labelledby="profileDropdown">
-                        <li><a class="dropdown-item  ">Profile</a></li>
+                        <li><a class="dropdown-item">Profile</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item " th:href="@{/logout}">Logout</a></li>
+                        <li><a class="dropdown-item" th:href="@{/logout}">Logout</a></li>
                     </ul>
                 </li>
                 <li class="nav-item" th:unless="${#authorization.expression('isAuthenticated()')}">
