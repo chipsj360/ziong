@@ -31,7 +31,13 @@ public class LoginSuccessHandler extends SavedRequestAwareAuthenticationSuccessH
         } else if (userDetails.hasRole("CUSTOMER")) {
             redirectURL = "/";
         }
-
+        SavedRequest savedRequest = requestCache.getRequest(request, response);
+        if (savedRequest != null) {
+            String originalURL = savedRequest.getRedirectUrl();
+            if (originalURL != null && !originalURL.contains("/login?logout")) {
+                redirectURL = originalURL;
+            }
+        }
 
 
         response.sendRedirect(redirectURL);

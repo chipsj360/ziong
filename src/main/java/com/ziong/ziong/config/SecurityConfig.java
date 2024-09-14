@@ -1,6 +1,7 @@
 package com.ziong.ziong.config;
 
 import com.ziong.ziong.service.CustomUserDetailsService;
+import jakarta.servlet.DispatcherType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
 import org.springframework.boot.web.servlet.server.ServletWebServerFactory;
@@ -17,6 +18,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
@@ -53,10 +55,16 @@ public class SecurityConfig {
 
 
     @Bean
+    public LoginSuccessHandler customLoginSuccessHandler() {
+        return new LoginSuccessHandler();
+    }
+
+    @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         // @formatter:off
         http.csrf((csrf) -> csrf.disable())
                 .authorizeHttpRequests((authorize) -> authorize
+                        .dispatcherTypeMatchers(DispatcherType.FORWARD).permitAll()
                         .requestMatchers("/css/**", "/images/**","/logout", "/", "/signup", "/process-register", "/register_success", "/js/**", "/products-in-category/**")
                         .permitAll()
                         .requestMatchers("/products/**","/products-in-category/**", "/product_detail/**")
@@ -71,7 +79,7 @@ public class SecurityConfig {
                         .usernameParameter("email")
                         .successHandler(loginSuccessHandler)
                         .permitAll()
-                );
+                ).requestCache(requestCacheConfigurer -> requestCacheConfigurer.requestCache(new HttpSessionRequestCache()));
 
 
         // @formatter:on
