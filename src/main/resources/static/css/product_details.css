@@ -70,10 +70,11 @@
 .list-item-img{
     width: 80%;
     height: auto;
-    max-height:200px;
+
     object-fit: contain;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
+    max-height:200px;
 }
 .list-img{
     max-height: 40vh;
