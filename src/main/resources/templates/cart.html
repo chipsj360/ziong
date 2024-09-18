@@ -13,7 +13,9 @@
 
     <link rel="stylesheet" href="/css/offcanvas-navbar.css">
     <!-- <link rel="stylesheet" href="/css/cart_2.css">-->
-
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/index-res.css">
+    <link rel="stylesheet" href="/css/customNavbar.css">
     <link href="/css/offcanvas-navbar.css" rel="stylesheet">
     <title>Cart</title>
 </head>
@@ -26,25 +28,22 @@
             <img src="" alt="" class="logo ">
         </div>
 
-        <button class="navbar-toggler align-content-ri p-0 border-0" type="button" id="navbarSideCollapse"
+        <button class="navbar-toggler align-content-ri p-0" type="button" id="navbarSideCollapse"
                 aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+            <span class="navbar-toggler-icon custom-toggler"> </span>
         </button>
 
         <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" href="#">Home</a>
+                    <a class="nav-link active" th:href="@{/index}">Home</a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link active" th:href="@{/products}">Products</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="#">Contact</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="#">About</a>
+                    <button type="submit" class="btn btn-secondary btn-block contactUsBtn">Contact Us</button>
                 </li>
                 <li class="nav-item px-3 d-flex">
                     <a class="nav-link position-relative" th:href="@{/cart}">
@@ -59,11 +58,11 @@
                         <i class="fa fa-user-circle-o me-2"></i><span th:text="${#authentication.name}"></span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end w-220px" aria-labelledby="profileDropdown">
-                        <li><a class="dropdown-item  ">Profile</a></li>
+                        <li><a class="dropdown-item">Profile</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item " href="/logout">Logout</a></li>
+                        <li><a class="dropdown-item" th:href="@{/logout}">Logout</a></li>
                     </ul>
                 </li>
                 <li class="nav-item" th:unless="${#authorization.expression('isAuthenticated()')}">
@@ -76,7 +75,7 @@
 
 
 
-<section class="h-100 gradient-custom">
+<section class="h-100 gradient-custom mt-5">
     <div class="container py-5">
         <div th:if="${check}" class="text-center">
             <b><h3 th:utext="${check}"></h3></b>
@@ -121,7 +120,7 @@
                                         </button>
                                     </form>
 
-                                    <p class="text-start text-md-center" th:text="'$' + ${cartItem.totalPrice}"></p>
+                                    <p class="text-start text-md-center" th:text="'ZMW ' + ${cartItem.totalPrice}"></p>
                                 </div>
                                 <hr class="my-4" />
                             </div>
@@ -154,7 +153,7 @@
                                         <p class="mb-0">(including VAT)</p>
                                     </strong>
                                 </div>
-                                <div class="ml-auto h5" th:text = " '$' + ${subTotal  }"> </div>
+                                <div class="ml-auto h5" th:text = " 'ZMW ' + ${subTotal  }"> </div>
                             </li>
                         </ul>
 
