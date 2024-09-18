@@ -20,11 +20,11 @@ public class UserService {
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    public void adduser(User user) {
+    public String adduser(User user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         user.setRoles(Collections.singletonList(roleRepository.findByName("CUSTOMER")));
         userRepository.save(user);
-
+      return "login";
     }
     public User findByEmail(String email) {
         return userRepository.findByEmail(email);
@@ -34,5 +34,11 @@ public class UserService {
     }
     public User getUserByUsername(String username){
         return userRepository.findByUsername(username);
+    }
+    public boolean isEmailExists(String email) {
+        return userRepository.existsByEmail(email);
+    }
+    public boolean isUsernameExists(String userName) {
+        return userRepository.existsByUserName(userName);
     }
 }

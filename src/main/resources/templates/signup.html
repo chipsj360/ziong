@@ -37,6 +37,13 @@
             <div class="row justify-content-center">
                 <div class="col-10 pt-5">
                     <form class="p-2" th:action="@{/process-register}" th:object="${user}" method="POST" >
+                        <div th:if="${emailExists}" class="alert alert-danger" role="alert">
+                            Email Already Exists, it must be unique.
+                        </div>
+
+                        <div th:if="${usernameExists}" class="alert alert-danger" role="alert">
+                            Username Already Exists, it must be unique.
+                        </div>
                         <div class="text-center mb-3">
                             <h3>ZIONG LIMITED</h3>
                         </div>

@@ -38,9 +38,19 @@ public class CoreController {
     }
 
     @PostMapping("/process-register")
-    public String processUser(@ModelAttribute("user") User user){
-    userService.adduser(user);
-      return "login";
+    public String processUser(@ModelAttribute("user") User user,Model model){
+        if(userService.isEmailExists(user.getEmail())){
+            model.addAttribute("emailExists", true);
+            return "signup";
+        }else if(userService.isUsernameExists(user.getUserName())){
+            model.addAttribute("usernameExists", true);
+            return "signup";
+        }
+
+        else{
+            return userService.adduser(user);
+        }
+
     }
 
     @GetMapping("/dashboard")
