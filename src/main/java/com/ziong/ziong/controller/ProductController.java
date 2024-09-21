@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.Principal;
+import java.util.Base64;
 import java.util.List;
 
 @Controller
@@ -45,7 +46,7 @@ public class ProductController {
         try {
             String username = principal.getName();
             productService.saveProductToDB(file, name, desc, price, currentQuantity, category, username);
-            return "dashboard";
+            return "redirect:/dashboard";
         } catch (Exception e) {
             // Log the error details
             System.err.println("Error saving product: " + e.getMessage());
@@ -83,21 +84,37 @@ public class ProductController {
     }
 
     @GetMapping("/products-in-category/{id}")
-    public String getProductsInCategory(@PathVariable("id") Long categoryId ,Model model){
+    public String getProductsInCategory(@PathVariable("id") Long categoryId, Model model) {
         Category category = categoryService.findById(categoryId);
         List<CategoryDto> categories = categoryService.getCategoryAndProduct();
         List<Product> products = productService.getProductsInCategory(categoryId);
-        model.addAttribute("category",category);
+
+        // Convert product images to Base64 strings
+        products.forEach(product -> {
+            if (product.getImage() != null) {
+                String base64Image = Base64.getEncoder().encodeToString(product.getImage());
+                product.setBase64Image(base64Image); // You will need to add a field to store this
+            }
+        });
+
+        model.addAttribute("category", category);
         model.addAttribute("categories", categories);
         model.addAttribute("products", products);
         return "products-in-category";
     }
 
 
+
     @GetMapping("/products")
     public String displayProducts(Model model){
         List<Product> products = productService.getAllProduct();
         List<CategoryDto> categories = categoryService.getCategoryAndProduct();
+        products.forEach(product -> {
+            if (product.getImage() != null) {
+                String base64Image = Base64.getEncoder().encodeToString(product.getImage());
+                product.setBase64Image(base64Image); // You will need to add a field to store this
+            }
+        });
         model.addAttribute("products", products);
         model.addAttribute("categories", categories);
         return "products-in-category";
@@ -106,8 +123,14 @@ public class ProductController {
     @GetMapping("/product_detail/{productId}")
     public String showProductDetails(@PathVariable("productId")Long id,
                                      Model model){
-        Product product=productService.getProductById(id);
-        model.addAttribute("product",product);
+        Product products=productService.getProductById(id);
+
+            if (products.getImage() != null) {
+                String base64Image = Base64.getEncoder().encodeToString(products.getImage());
+                products.setBase64Image(base64Image); // You will need to add a field to store this
+            }
+
+        model.addAttribute("product",products);
         return "product_details";
     }
     @GetMapping("/delete-product/{id}")

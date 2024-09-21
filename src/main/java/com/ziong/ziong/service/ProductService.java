@@ -40,7 +40,7 @@ public class ProductService {
             System.out.println("not a a valid file");
         }
         try {
-            p.setImage(Base64.getEncoder().encodeToString(file.getBytes()));
+            p.setImage(file.getBytes());
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.Base64;
 import java.util.List;
 
 @Controller
@@ -57,6 +58,12 @@ public class CoreController {
     public String adminDasboard(Model model){
 
         List<Product> products = productService.getAllProduct();
+        products.forEach(product -> {
+            if (product.getImage() != null) {
+                String base64Image = Base64.getEncoder().encodeToString(product.getImage());
+                product.setBase64Image(base64Image); // You will need to add a field to store this
+            }
+        });
         model.addAttribute("products", products);
         return "dashboard";
     }

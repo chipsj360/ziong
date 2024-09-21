@@ -20,7 +20,7 @@ public class Product {
     private String name;
     private Date date;
     private String description;
-
+    private String base64Image;
     private double costPrice;
     private double salePrice;
     private int currentQuantity;
@@ -29,9 +29,10 @@ public class Product {
     private User user;
     @Lob
     @Column(columnDefinition = "MEDIUMBLOB")
-    private  String image;
+    private byte[] image;
+    ;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.REMOVE)
     @JoinColumn(name = "category_id", referencedColumnName = "category_id")
     private Category category;
 

@@ -18,7 +18,7 @@ public class ProductDto {
     private double salePrice;
     private int currentQuantity;
     private Category category;
-    private String image;
+    private byte[] image;
     private boolean activated;
     private boolean deleted;
 }

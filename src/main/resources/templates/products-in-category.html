@@ -22,14 +22,16 @@
         <div class="navbar-brand">
             <img src="" alt="" class="logo ">
         </div>
-        <button class="navbar-toggler align-content-ri p-0 border-0" type="button" id="navbarSideCollapse"
+
+        <button class="navbar-toggler align-content-ri p-0" type="button" id="navbarSideCollapse"
                 aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+            <span class="navbar-toggler-icon custom-toggler"> </span>
         </button>
+
         <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" th:href="@{/index}">Home</a>
+                    <a class="nav-link active" th:href="@{/}">Home</a>
                 </li>
 
                 <li class="nav-item">
@@ -38,7 +40,6 @@
                 <li class="nav-item">
                     <button type="submit" class="btn btn-secondary btn-block contactUsBtn">Contact Us</button>
                 </li>
-
                 <li class="nav-item px-3 d-flex">
                     <a class="nav-link position-relative" th:href="@{/cart}">
                         <i class="fa fa-shopping-cart"></i>
@@ -52,11 +53,11 @@
                         <i class="fa fa-user-circle-o me-2"></i><span th:text="${#authentication.name}"></span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end w-220px" aria-labelledby="profileDropdown">
-                        <li><a class="dropdown-item  ">Profile</a></li>
+                        <li><a class="dropdown-item">Profile</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item  " href="/logout">Logout</a></li>
+                        <li><a class="dropdown-item" th:href="@{/logout}">Logout</a></li>
                     </ul>
                 </li>
                 <li class="nav-item" th:unless="${#authorization.expression('isAuthenticated()')}">
@@ -114,7 +115,9 @@
             </div>
             <div class="col-12 col-lg-3" th:each="product : ${products}">
                 <div class="card m-4">
-                    <a th:href="@{/product_detail/{productId} (productId=${product.id})}"><img   th:src="*{'data:image/jpeg;base64,'+{product.image}}" alt="list-item-img"  style="width: 100px;height: 100px;" ></a>
+                    <a th:href="@{/product_detail/{productId} (productId=${product.id})}"><img th:src="'data:image/jpeg;base64,' + ${product.base64Image}"  style="width: 100px;height: 100px;" alt="Image"/>
+
+                    </a>
                     <div class="p-3">
                         <h4> [[*{product.name}]] </h4>
                         <h6> Category Name </h6>
