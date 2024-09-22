@@ -68,4 +68,18 @@ public class CoreController {
         return "dashboard";
     }
 
+    @GetMapping("/view-products")
+    public String viewProducts(Model model){
+
+        List<Product> products = productService.getAllProduct();
+        products.forEach(product -> {
+            if (product.getImage() != null) {
+                String base64Image = Base64.getEncoder().encodeToString(product.getImage());
+                product.setBase64Image(base64Image); // You will need to add a field to store this
+            }
+        });
+        model.addAttribute("products", products);
+        return "dashboard";
+    }
+
 }

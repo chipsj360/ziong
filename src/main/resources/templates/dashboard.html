@@ -76,7 +76,7 @@
                     <li class="nav-item active">
                         <a
                                 data-bs-toggle="collapse"
-                                th:href="@{/dashboard}"
+                                href="#dashboard"
                                 class="collapsed"
                                 aria-expanded="false"
                         >
@@ -85,7 +85,6 @@
                         </a>
 
                     </li>
-
                     <li class="nav-section">
                 <span class="sidebar-mini-icon">
                   <i class="fa fa-ellipsis-h"></i>
@@ -106,7 +105,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="components/buttons.html">
+                                    <a th:href="@{/view-products}">
                                         <span class="sub-item">View Product</span>
                                     </a>
                                 </li>
