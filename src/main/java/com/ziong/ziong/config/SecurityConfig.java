@@ -65,12 +65,13 @@ public class SecurityConfig {
         // @formatter:off
         http.csrf((csrf) -> csrf.disable())
                 .authorizeHttpRequests((authorize) -> authorize
-                        .requestMatchers(new AntPathRequestMatcher("/favicon.ico")).denyAll()
+
                         .dispatcherTypeMatchers(DispatcherType.FORWARD).permitAll()
                         .requestMatchers("/css/**", "/images/**","/logout", "/", "/signup", "/process-register", "/register_success", "/js/**")
                         .permitAll()
                         .requestMatchers("/products/**","/products-in-category/**", "/product_detail/**")
                         .permitAll()
+                        .requestMatchers("/account","/change-password","/update-profile").authenticated()
                         .requestMatchers("/dashboard", "/customers", "/process_product")
                         .hasAuthority("ADMIN")
                         .anyRequest().authenticated()

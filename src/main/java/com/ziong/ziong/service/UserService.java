@@ -26,6 +26,33 @@ public class UserService {
         userRepository.save(user);
       return "login";
     }
+
+    public UserDto getUser(String username) {
+
+        UserDto userDto = new UserDto();
+        User user = userRepository.findByUsername(username);
+        userDto.setFirstName(user.getFirstName());
+        userDto.setLastName(user.getLastName());
+        userDto.setUserName(user.getUserName());
+        userDto.setPassword(user.getPassword());
+        userDto.setEmail(user.getEmail());
+
+        return userDto;
+
+    }
+    public User changePass(UserDto customerDto) {
+        User user = userRepository.findByUsername(customerDto.getUserName());
+        user.setPassword(customerDto.getPassword());
+        return userRepository.save(user);
+    }
+
+    public User update(UserDto dto, UserDto customerDto) {
+        User user = userRepository.findByUsername(dto.getUserName());
+        user.setFirstName(customerDto.getFirstName());
+        user.setLastName(customerDto.getLastName());
+        user.setEmail(customerDto.getEmail());
+        return userRepository.save(user);
+    }
     public User findByEmail(String email) {
         return userRepository.findByEmail(email);
     }

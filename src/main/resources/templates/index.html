@@ -59,7 +59,7 @@
                         <i class="fa fa-user-circle-o me-2"></i><span th:text="${#authentication.name}"></span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end w-220px" aria-labelledby="profileDropdown">
-                        <li><a class="dropdown-item">Profile</a></li>
+                        <li><a th:href="@{/account}" class="dropdown-item">Profile</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
