@@ -191,5 +191,15 @@ public class ProductController {
 //        return "redirect:/dashboard";
 //    }
 
-
+    @RequestMapping(value = "/enable-product/{id}", method = {RequestMethod.PUT , RequestMethod.GET})
+    public String enabledProduct(@PathVariable("id")Long id, RedirectAttributes attributes) {
+        try {
+            productService.enableById(id);
+            attributes.addFlashAttribute("success", "Enabled successfully!");
+        } catch (Exception e) {
+            e.printStackTrace();
+            attributes.addFlashAttribute("error", "Failed to enabled!");
+        }
+        return "redirect:/dashboard";
+    }
 }

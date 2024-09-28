@@ -102,6 +102,13 @@ public class ProductService {
         return repo.getReferenceById(id);
     }
 
+    public void enableById(Long id) {
+        Product product = repo.getById(id);
+        product.set_activated(true);
+        product.set_deleted(false);
+        repo.save(product);
+    }
+
     public void deleteById(Long id) {
         Product product = repo.getReferenceById(id);
         product.set_deleted(true);

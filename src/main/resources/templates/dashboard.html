@@ -540,36 +540,67 @@
         </div>
 
         <div class="container-fluid">
-            <div class=" col-sm-7 col-md-9 col-lg-9" >
-                <h3 class="text-center">list of products</h3>
+            <div class="col-sm-7 col-md-9 col-lg-9">
+                <h3 class="text-center">List of Products</h3>
                 <div class="table-main table-responsive">
                     <hr>
                     <table class="table">
                         <thead class="thead-dark">
                         <tr>
-                            <th scope="col">image</th>
-                            <th scope="col">name</th>
+                            <th scope="col">Image</th>
+                            <th scope="col">Name</th>
                             <th scope="col">Category</th>
-                            <th scope="col">description</th>
-                            <th scope="col">price</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Price</th>
                             <th scope="col">Quantity</th>
                             <th scope="col">Update</th>
-                            <th scope="col">delete</th>
+                            <th scope="col">Delete</th>
+                            <th scope="col">Enable</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr th:each="product : ${products}">
-                            <td> <img th:src="'data:image/jpeg;base64,' + ${product.base64Image}" style="height: 40px; width: 40px;"></td>
-                            <th scope="row" th:text = "${product.name}"></th>
-                            <td th:text = "${product.category.name}"></td>
-                            <td th:text = "${product.description}"></td>
-                            <td th:text = "${product.costPrice}"></td>
-                            <td th:text = "${product.currentQuantity}"></td>
-                            <td><a th:href="@{/update-product/{id} (id = ${product.id})}" class="btn btn-success">Update</a></td>
                             <td>
-                                <a  th:href = "@{/delete-product/{id} (id = ${product.id})}" class="btn btn-danger">Delete</a>
+                                <img th:src="'data:image/jpeg;base64,' + ${product.base64Image}" style="height: 40px; width: 40px;">
+                            </td>
+                            <th scope="row" th:text="${product.name}"></th>
+                            <td th:text="${product.category.name}"></td>
+                            <td th:text="${product.description}"></td>
+                            <td th:text="${product.costPrice}"></td>
+                            <td th:text="${product.currentQuantity}"></td>
+
+                            <!-- Update Button: Disabled if product is deleted or deactivated -->
+                            <td>
+                                <a th:if="${!product.is_deleted && product.is_activated}"
+                                   th:href="@{/update-product/{id}(id=${product.id})}"
+                                   class="btn btn-success">Update</a>
+
+                                <!-- Disabled Update button -->
+                                <button th:unless="${!product.is_deleted && product.is_activated}"
+                                        class="btn btn-secondary" disabled>Update</button>
                             </td>
 
+                            <!-- Delete Button: Disabled if product is deleted or deactivated -->
+                            <td>
+                                <a th:if="${!product.is_deleted && product.is_activated}"
+                                   th:href="@{/delete-product/{id}(id=${product.id})}"
+                                   class="btn btn-danger">Delete</a>
+
+                                <!-- Disabled Delete button -->
+                                <button th:unless="${!product.is_deleted && product.is_activated}"
+                                        class="btn btn-secondary" disabled>Delete</button>
+                            </td>
+
+                            <!-- Enable Button: Visible only when the product is deactivated -->
+                            <td>
+                                <a th:if="${product.is_deleted || !product.is_activated}"
+                                   th:href="@{/enable-product/{id}(id=${product.id})}"
+                                   class="btn btn-primary">Enable</a>
+
+                                <!-- Optionally show disabled button if already enabled -->
+                                <button th:unless="${product.is_deleted || !product.is_activated}"
+                                        class="btn btn-secondary" disabled>Enable</button>
+                            </td>
                         </tr>
                         </tbody>
                     </table>
@@ -577,6 +608,7 @@
                 </div>
             </div>
         </div>
+
 
 
     </div>
