@@ -67,7 +67,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests((authorize) -> authorize
 
                         .dispatcherTypeMatchers(DispatcherType.FORWARD).permitAll()
-                        .requestMatchers("/css/**", "/images/**","/logout", "/", "/signup", "/process-register", "/register_success", "/js/**")
+                        .requestMatchers("/css/**", "/images/**","/logout", "/", "/signup", "/process-register", "/register_success", "/js/**","/favicon.ico")
                         .permitAll()
                         .requestMatchers("/products/**","/products-in-category/**", "/product_detail/**")
                         .permitAll()

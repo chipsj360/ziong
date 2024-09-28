@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 
@@ -105,20 +106,56 @@ public class ProductController {
 
 
 
+
     @GetMapping("/products")
-    public String displayProducts(Model model){
-        List<Product> products = productService.getAllProduct();
+    public String displayProducts(Model model) {
+        // Fetch all categories
         List<CategoryDto> categories = categoryService.getCategoryAndProduct();
-        products.forEach(product -> {
-            if (product.getImage() != null) {
-                String base64Image = Base64.getEncoder().encodeToString(product.getImage());
-                product.setBase64Image(base64Image); // You will need to add a field to store this
-            }
-        });
-        model.addAttribute("products", products);
-        model.addAttribute("categories", categories);
+
+        // Check if there are categories available
+        if (categories != null && !categories.isEmpty()) {
+            // Get the first category as the default category
+            Long defaultCategoryId = categories.get(0).getCategoryId();
+
+            // Fetch products in the default category
+            List<Product> products = productService.getProductsInCategory(defaultCategoryId);
+
+            // Convert product images to Base64 strings
+            products.forEach(product -> {
+                if (product.getImage() != null) {
+                    String base64Image = Base64.getEncoder().encodeToString(product.getImage());
+                    product.setBase64Image(base64Image);
+                }
+            });
+
+            // Add attributes to the model
+            model.addAttribute("products", products);
+            model.addAttribute("categories", categories);
+            model.addAttribute("defaultCategory", defaultCategoryId);
+        } else {
+            // Handle case where there are no categories
+            model.addAttribute("products", new ArrayList<>());
+            model.addAttribute("categories", new ArrayList<>());
+            model.addAttribute("defaultCategory", null);
+        }
+
         return "products-in-category";
     }
+
+//    @GetMapping("/products")
+//    public String displayProducts(Model model){
+//        List<Product> products = productService.getAllProduct();
+//        List<CategoryDto> categories = categoryService.getCategoryAndProduct();
+//        products.forEach(product -> {
+//            if (product.getImage() != null) {
+//                String base64Image = Base64.getEncoder().encodeToString(product.getImage());
+//                product.setBase64Image(base64Image); // You will need to add a field to store this
+//            }
+//        });
+//        model.addAttribute("products", products);
+//        model.addAttribute("categories", categories);
+//        return "products-in-category";
+//    }
 
     @GetMapping("/product_detail/{productId}")
     public String showProductDetails(@PathVariable("productId")Long id,
@@ -133,13 +170,26 @@ public class ProductController {
         model.addAttribute("product",products);
         return "product_details";
     }
-    @GetMapping("/delete-product/{id}")
-    public String deleteProduct(@PathVariable("id") Long id)
-    {
 
-        productService.deleteProductById(id);
+    @RequestMapping(value = "/delete-product/{id}", method = {RequestMethod.PUT, RequestMethod.GET})
+    public String deletedProduct(@PathVariable("id") Long id, RedirectAttributes attributes){
+        try {
+            productService.deleteById(id);
+            attributes.addFlashAttribute("success", "Deleted successfully!");
+        }catch (Exception e){
+            e.printStackTrace();
+            attributes.addFlashAttribute("error", "Failed to deleted");
+        }
         return "redirect:/dashboard";
     }
+
+//    @GetMapping("/delete-product/{id}")
+//    public String deleteProduct(@PathVariable("id") Long id)
+//    {
+//
+//        productService.deleteProductById(id);
+//        return "redirect:/dashboard";
+//    }
 
 
 }

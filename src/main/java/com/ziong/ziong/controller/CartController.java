@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.Base64;
 
 @Controller
 public class CartController {
@@ -34,18 +35,29 @@ public class CartController {
         }
 
         String username = principal.getName();
-//        User user = userService.findByEmail(username);
         User user = userService.findByUsername(username);
         ShoppingCart shoppingCart = user.getShoppingCart();
+
+        // Check if the cart is empty
         if(shoppingCart == null || shoppingCart.getCartItem().isEmpty()){
             model.addAttribute("check", "No Items in the Cart!<br>Go to catalog to shop items");
             session.setAttribute("subTotal", 0);
             model.addAttribute("totalItems", 0);
-        }else {
+        } else {
+            // Convert product images to Base64 strings
+            shoppingCart.getCartItem().forEach(cartItem -> {
+                Product product = cartItem.getProduct();
+                if (product.getImage() != null) {
+                    String base64Image = Base64.getEncoder().encodeToString(product.getImage());
+                    product.setBase64Image(base64Image);  // Ensure the Product entity has this field
+                }
+            });
+
             session.setAttribute("totalItems", shoppingCart.getTotalItems());
             model.addAttribute("subTotal", shoppingCart.getTotalPrices());
             model.addAttribute("shoppingCart", shoppingCart);
         }
+
         return "cart";
     }
 

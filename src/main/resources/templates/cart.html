@@ -10,6 +10,7 @@
             crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link th:href="@{/favicon.ico}" rel="icon" type="image/x-icon">
 
     <link rel="stylesheet" href="/css/offcanvas-navbar.css">
     <!-- <link rel="stylesheet" href="/css/cart_2.css">-->
@@ -90,7 +91,7 @@
                                 <div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
                                     <div class="bg-image hover-overlay hover-zoom ripple rounded" data-mdb-ripple-color="light">
                                         <img class="img-fluid"
-                                             th:src="*{'data:image/jpeg;base64,' + cartItem.product.image}" alt=""/>
+                                             th:src="'data:image/jpeg;base64,' + ${cartItem.product.base64Image}"  alt=""/>
                                     </div>
                                     <!-- Image -->
                                 </div>
