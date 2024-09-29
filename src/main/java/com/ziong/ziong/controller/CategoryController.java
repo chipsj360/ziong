@@ -46,10 +46,10 @@ public class CategoryController {
 
     }
 
-    @RequestMapping(value = "/findById", method = {RequestMethod.PUT, RequestMethod.GET})
-    @ResponseBody
-    public Category findById(Long id){
-        return categoryService.findById(id);
+    @GetMapping("/findById/{id}")
+    public String findById(@PathVariable("id") Long id){
+        categoryService.findById(id);
+        return "categories";
     }
 
     @GetMapping("/update-category")
@@ -67,5 +67,17 @@ public class CategoryController {
         return "redirect:/categories";
     }
 
+
+    @RequestMapping(value = "/delete-category/{id}", method = {RequestMethod.PUT, RequestMethod.GET})
+    public String delete(@PathVariable("id") Long id, RedirectAttributes attributes){
+        try {
+            categoryService.deleteById(id);
+            attributes.addFlashAttribute("success", "Deleted successfully");
+        }catch (Exception e){
+            e.printStackTrace();
+            attributes.addFlashAttribute("failed", "Failed to deleted");
+        }
+        return "redirect:/categories";
+    }
 
 }

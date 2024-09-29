@@ -36,6 +36,21 @@ public class CategoryService {
         }
         return repo.save(categoryUpdate);
     }
+    public void deleteById(Long id) {
+        Category category = repo.getReferenceById(id);
+        category.set_deleted(true);
+        category.set_activated(false);
+        repo.save(category);
+    }
+
+
+    public void enabledById(Long id) {
+        Category category = repo.getById(id);
+        category.set_activated(true);
+        category.set_deleted(false);
+        repo.save(category);
+    }
+
 
     public List<Category> findAllByActivated() {
         return repo.findAllByActivated();

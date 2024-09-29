@@ -72,7 +72,7 @@ public class SecurityConfig {
                         .requestMatchers("/products/**","/products-in-category/**", "/product_detail/**")
                         .permitAll()
                         .requestMatchers("/account","/change-password","/update-profile").authenticated()
-                        .requestMatchers("/dashboard", "/customers", "/process_product","/delete-product/**")
+                        .requestMatchers("/dashboard", "/customers", "/process_product","/delete-product/**","/findById/**","/delete-category/**")
                         .hasAuthority("ADMIN")
                         .anyRequest().authenticated()
                 )
