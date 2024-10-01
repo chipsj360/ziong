@@ -97,8 +97,7 @@
                         <!-- HTML !-->
                         <div class="d-flex">
                             <form th:action="@{/add-to-cart}" method="post" >
-                            <button class="prod-btn me-3" role="button"> Buy now <i
-                                    class="bi bi-caret-down-square"></i></button>
+
                                 <input type="hidden" th:value="${product.id}" name="id">
                             <button class="prod-btn" role="button" type="submit"> Add to Cart <i class="bi bi-cart2"></i></button>
                             </form>
