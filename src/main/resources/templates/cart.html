@@ -99,8 +99,7 @@
                                 <div class="col-lg-5 col-md-6 mb-4 mb-lg-0">
                                     <!-- Data -->
                                     <p th:text="${cartItem.product.name}"></p>
-                                    <p>Color: blue</p>
-                                    <p>Size: M</p>
+                                    <p>Description: </p>
 
 
                                     <!-- Data -->
@@ -113,11 +112,11 @@
                                                name="quantity" min="0" step="1"
                                                class="c-input-text qty text">
                                         <button type="submit" name="action" value="update" title="Update"
-                                                class="btn btn-primary btn-sm me-1 mb-2">Update<i class="bi bi-file-arrow-up-fill"></i>
+                                                class="btn btn-primary btn-sm me-1 mb-2 mt-2">Update<i class="bi bi-file-arrow-up-fill"></i>
                                         </button>
 
                                         <button type="submit" name="action" value="delete" title="Delete"
-                                                class="btn btn-danger btn-sm mb-2" ><i class="bi bi-trash-fill"></i>
+                                                class="btn btn-danger btn-sm mb-2 mt-2" ><i class="bi bi-trash-fill"></i>
                                         </button>
                                     </form>
 
@@ -159,7 +158,7 @@
                         </ul>
 
                         <button type="button" class="btn btn-primary ">
-                            <a th:href="@{/check-out}" class="text-white">Checkout</a>
+                            <a th:href="@{/check-out}" class="text-black" style="color: black;">Checkout</a>
                         </button>
                     </div>
                 </div>
