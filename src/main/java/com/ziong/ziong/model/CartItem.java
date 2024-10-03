@@ -24,7 +24,7 @@ public class CartItem {
     @JoinColumn(name = "shopping_cart_id", referencedColumnName = "shopping_cart_id")
     private ShoppingCart cart;
 
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id", referencedColumnName = "id")
     private Product product;
 }

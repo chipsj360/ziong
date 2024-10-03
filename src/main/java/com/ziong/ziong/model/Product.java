@@ -32,7 +32,7 @@ public class Product {
     private byte[] image;
     ;
 
-    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.REMOVE)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id", referencedColumnName = "category_id")
     private Category category;
 
