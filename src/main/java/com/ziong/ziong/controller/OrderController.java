@@ -9,6 +9,7 @@ import com.ziong.ziong.respository.ShoppingCartRepository;
 import com.ziong.ziong.service.EmailService;
 import com.ziong.ziong.service.ProductService;
 import com.ziong.ziong.service.UserService;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -107,20 +108,24 @@ public class OrderController {
                 // Remove items from the shopping cart
                 cartItemRepository.deleteAll(cart.getCartItem());
 
-                // Reset the cart totals after clearing
-                cart.setTotalItems(0);
-                cart.setTotalPrices(0.0);
-                shoppingCartRepository.save(cart); // Persist the updated shopping cart
+                // Clear the cart items set in memory
+                cart.getCartItem().clear();
 
-                model.addAttribute("totalItems", cart.getTotalItems());
-                model.addAttribute("subTotal", cart.getTotalPrices());
+                // Reset the cart totals after clearing
+
+
+                // Save the updated cart
+                shoppingCartRepository.delete(cart);
+
+
             }
 
-            model.addAttribute("cart", cart);
+
         }
 
         return "redirect:/";
     }
+
 
 
     @RequestMapping(value="/buy/{id}" , method = {RequestMethod.PUT , RequestMethod.GET})
