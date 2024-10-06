@@ -36,6 +36,12 @@
         <div class="card w-75 w-md-50">
             <div class="row justify-content-center">
                 <div class="col-10 pt-5">
+                    <div th:if = "${param.error}" class="text-center alert alert-warning">
+                        <p>Invalid username or password</p>
+                    </div>
+                    <div th:if = "${param.logout}" class="text-center alert alert-success">
+                        <p>You have been logged out</p>
+                    </div>
                     <form class="p-2" method="POST" th:action="@{/login}">
                         <div class="text-center mb-3">
                             <h3 class="pb-5">ZIONG LIMITED</h3>

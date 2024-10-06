@@ -13,6 +13,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 import java.util.Objects;
@@ -122,4 +123,25 @@ public class ProductService {
     }
 
 
+    public List<ProductDto> searchProducts(String keyword) {
+        return transferData(repo.searchProducts(keyword));
+    }
+    private List<ProductDto> transferData(List<Product> products) {
+        List<ProductDto> productDtos = new ArrayList<>();
+        for (Product product : products) {
+            ProductDto productDto = new ProductDto();
+            productDto.setId(product.getId());
+            productDto.setName(product.getName());
+            productDto.setCurrentQuantity(product.getCurrentQuantity());
+            productDto.setCostPrice(product.getCostPrice());
+            productDto.setSalePrice(product.getSalePrice());
+            productDto.setDescription(product.getDescription());
+            productDto.setImage(product.getImage());
+            productDto.setCategory(product.getCategory());
+            productDto.setActivated(product.is_activated());
+            productDto.setDeleted(product.is_deleted());
+            productDtos.add(productDto);
+        }
+        return productDtos;
+    }
 }

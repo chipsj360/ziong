@@ -14,6 +14,7 @@ public class ProductDto {
     private Long id;
     private String name;
     private String description;
+    private String base64Image;
     private double costPrice;
     private double salePrice;
     private int currentQuantity;
@@ -21,4 +22,6 @@ public class ProductDto {
     private byte[] image;
     private boolean activated;
     private boolean deleted;
+
+
 }

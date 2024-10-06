@@ -202,4 +202,43 @@ public class ProductController {
         }
         return "redirect:/dashboard";
     }
+    @GetMapping("/product-search/{pageNo}")
+    public String customerSearch(@PathVariable("pageNo") int pageNo,
+                                 @RequestParam(value = "keyword") String keyword,
+                                 Model model
+    ) {
+        List<CategoryDto> categories = categoryService.getCategoryAndProduct();
+
+        // Check if there are categories available
+        if (categories != null && !categories.isEmpty()) {
+            // Get the first category as the default category
+            Long defaultCategoryId = categories.get(0).getCategoryId();
+
+            // Fetch products in the default category
+
+
+            List<ProductDto> products = productService.searchProducts(keyword);
+        products.forEach(product -> {
+            if (product.getImage() != null) {
+                String base64Image = Base64.getEncoder().encodeToString(product.getImage());
+                product.setBase64Image(base64Image);
+            }
+        });
+        model.addAttribute("categories", categories);
+        model.addAttribute("defaultCategory", defaultCategoryId);
+        model.addAttribute("title", "Result Search Products");
+        model.addAttribute("products", products);
+        model.addAttribute("currentPage", pageNo);
+
+
+        } else {
+            // Handle case where there are no categories
+            model.addAttribute("products", new ArrayList<>());
+            model.addAttribute("categories", new ArrayList<>());
+            model.addAttribute("defaultCategory", null);
+        }
+
+        return "search-results";
+
+    }
 }
