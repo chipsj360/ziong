@@ -28,6 +28,17 @@
     .card {
         opacity: 0.95;
     }
+       .logo-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .logo-container img {
+        width: 100px;
+        height: auto;
+    }
 </Style>
 
 <body>
@@ -37,6 +48,14 @@
             <div class="row justify-content-center">
                 <div class="col-10 pt-5">
                     <form class="p-2" th:action="@{/process-register}" th:object="${user}" method="POST" >
+                        <div class="text-center mb-3">
+                            <div class="logo-container">
+                                <a th:href="@{/}" style="text-decoration: none; color: inherit;">
+                                    <img src="../images/logo.jpeg" alt="Logo"> <!-- Add your logo image here -->
+                                </a>
+                            </div>
+                        </div>
+
                         <div th:if="${emailExists}" class="alert alert-danger" role="alert">
                             Email Already Exists, it must be unique.
                         </div>
@@ -44,9 +63,7 @@
                         <div th:if="${usernameExists}" class="alert alert-danger" role="alert">
                             Username Already Exists, it must be unique.
                         </div>
-                        <div class="text-center mb-3">
-                            <h3>ZIONG LIMITED</h3>
-                        </div>
+
                         <!-- First Name input -->
                         <div data-mdb-input-init class="form-outline mb-4">
                             <input type="text" id="registerFirstName" class="form-control" th:field="*{firstName}"/>
@@ -93,11 +110,6 @@
         </div>
     </div>
 </div>
-
-<!-- MDB and Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
-        integrity="sha384-IQsoLXlHjz/90p6KIbzG7xHkN8yIy1wZ8J2FnZBhjRMtSnH8L5v5DOMP8MRtRgLy"
-        crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
-        integrity="sha384-cVKIPhG81r603YFm2ZIIO9cWLxINMEGg5xR/dnYw5Un+czrZ5f6R0G7rGCK7Og9+" crossorigin="anonymous">
-</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.0/mdb.min.js"></script>
+</body>
+</html>

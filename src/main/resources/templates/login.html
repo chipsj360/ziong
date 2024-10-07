@@ -28,6 +28,17 @@
     .card {
         opacity: 0.95;
     }
+       .logo-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .logo-container img {
+        width: 100px;
+        height: auto;
+    }
 </Style>
 
 <body>
@@ -36,6 +47,8 @@
         <div class="card w-75 w-md-50">
             <div class="row justify-content-center">
                 <div class="col-10 pt-5">
+
+
                     <div th:if = "${param.error}" class="text-center alert alert-warning">
                         <p>Invalid username or password</p>
                     </div>
@@ -44,8 +57,13 @@
                     </div>
                     <form class="p-2" method="POST" th:action="@{/login}">
                         <div class="text-center mb-3">
-                            <h3 class="pb-5">ZIONG LIMITED</h3>
+                            <div class="logo-container">
+                                <a th:href="@{/}" style="text-decoration: none; color: inherit;">
+                                    <img src="../images/logo.jpeg" alt="Logo"> <!-- Add your logo image here -->
+                                </a>
+                            </div>
                         </div>
+
                         <!-- Email input -->
                         <div data-mdb-input-init class="form-outline mb-4 ">
                             <input type="text" id="loginName" name="email" class="form-control" />
