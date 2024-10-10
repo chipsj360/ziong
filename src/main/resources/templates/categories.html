@@ -275,7 +275,7 @@
     </form>
 </div>
 <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalExample" aria-hidden="true">
-    <form  method="put">
+    <form th:action="@{/update-category/{id}(id = ${id})}" method="post">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -327,7 +327,7 @@
 
 
                     // Set form action dynamically
-                    form.action = `/update/donor/${id}`; // Set action URL here
+                    form.action = `/update-category/${id}`; // Set action URL here
                     console.log("Form action set to:", form.action); // Log the action URL
                 } else {
                     console.error('Form not found in modal!');

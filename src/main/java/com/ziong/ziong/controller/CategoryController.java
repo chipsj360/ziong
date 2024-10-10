@@ -53,10 +53,12 @@ public class CategoryController {
         return "categories";
     }
 
-    @GetMapping("/update-category/id")
-    public String update(Category category, RedirectAttributes attributes){
+    @PostMapping ("/update-category/{id}")
+    public String update(@PathVariable("id") Long id,  RedirectAttributes attributes){
         try {
+            Category category =categoryService.findById(id);
             categoryService.update(category);
+
             attributes.addFlashAttribute("success","Updated successfully");
         }catch (DataIntegrityViolationException e){
             e.printStackTrace();
