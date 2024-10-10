@@ -47,12 +47,13 @@ public class CategoryController {
     }
 
     @GetMapping("/findById/{id}")
-    public String findById(@PathVariable("id") Long id){
-        categoryService.findById(id);
+    public String findById(@PathVariable("id") Long id,Model model){
+        Category category= categoryService.findById(id);
+        model.addAttribute("category",category);
         return "categories";
     }
 
-    @GetMapping("/update-category")
+    @GetMapping("/update-category/id")
     public String update(Category category, RedirectAttributes attributes){
         try {
             categoryService.update(category);

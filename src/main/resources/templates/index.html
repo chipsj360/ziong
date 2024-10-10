@@ -87,36 +87,18 @@
         <h6 class="pb-4 align-self-center">OUR PRODUCTS</h6>
         <h2 class="align-self-center"> MAKE YOUR ORDER</h2>
         <div class="deals-list row">
-            <div class="col-12 col-lg-4">
+            <div class="col-12 col-lg-4" th:each="product:${products}">
                 <div class="card m-4">
-                    <img class="list-item-img" src="/images/roof.jpeg" alt="list-item-img">
+                    <a th:href="@{/product_detail/{productId} (productId=${product.id})}"><img th:src="'data:image/jpeg;base64,' + ${product.base64Image}"  class="list-item-img" alt="Image"/>
+
+                    </a>
                     <div class="p-3">
-                        <h4> Equiptment Name </h4>
-                        <h6> Category Name </h6>
-                        <h6>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus facilis mollitia eaque</h6>
+                        <h4> [[*{product.name}]] </h4>
+                        <h6>[[*{product.description}]]</h6>
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-lg-4">
-                <div class="card m-4">
-                    <img class="list-item-img" src="/images/roof.jpeg" alt="list-item-img">
-                    <div class="p-3">
-                        <h4> Equiptment Name </h4>
-                        <h6> Category Name </h6>
-                        <h6>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus facilis mollitia eaque</h6>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-lg-4">
-                <div class="card m-4">
-                    <img class="list-item-img" src="/images/roof.jpeg" alt="list-item-img">
-                    <div class="p-3">
-                        <h4> Equiptment Name </h4>
-                        <h6> Category Name </h6>
-                        <h6>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus facilis mollitia eaque</h6>
-                    </div>
-                </div>
-            </div>
+
             <div class="col-12 d-flex justify-content-center pt-3">
                 <button type="submit" class="btn btn-dark btn-block "  style="width: fit-content;"><h6>More Products </h6> </button>
             </div>
