@@ -24,7 +24,16 @@ public class CoreController {
     ProductService productService;
 
     @GetMapping("/")
-    public String index(){
+    public String index(Model model){
+        List<Product>products= productService.getAllProduct();
+        products.forEach(product -> {
+            if (product.getImage() != null) {
+                String base64Image = Base64.getEncoder().encodeToString(product.getImage());
+                product.setBase64Image(base64Image);
+            }
+        });
+
+        model.addAttribute("products", products);
         return "index";
     }
 
