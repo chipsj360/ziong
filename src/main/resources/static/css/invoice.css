@@ -92,3 +92,12 @@ body{margin-top:20px;
         width: 1.45rem;
         height: 1.45rem;
     }
+    .logo{
+        max-height: auto; /* Adjust the height as needed */
+        max-width: 50px;
+        object-fit: cover;
+        position:relative;
+        top:4px;
+        bottom:20px;
+        left: 50px;
+     }
