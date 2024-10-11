@@ -89,7 +89,7 @@
         <div class="deals-list row">
             <div class="col-12 col-lg-4" th:each="product:${products}">
                 <div class="card m-4">
-                    <a th:href="@{/product_detail/{productId} (productId=${product.id})}"><img th:src="'data:image/jpeg;base64,' + ${product.base64Image}"  class="list-item-img" alt="Image"/>
+                    <a class="list-item-img" th:href="@{/product_detail/{productId} (productId=${product.id})}"><img th:src="'data:image/jpeg;base64,' + ${product.base64Image}"  class="list-item-img" alt="Image"/>
 
                     </a>
                     <div class="p-3">
@@ -123,14 +123,14 @@
                     <div class="responsive-container-block bigContainer">
                         <div class="responsive-container-block Container">
                             <div class="responsive-cell-block wk-desk-6 wk-ipadp-6 wk-tab-12 wk-mobile-12">
-                                <img class="bigImg" src="/images/about-1.jpg" alt="img">
+                                <img class="bigImg" src="/images/img10.jpeg" alt="img">
                             </div>
                             <div class="responsive-container-block sideImgContainer">
                                 <div class="responsive-cell-block wk-desk-12 wk-ipadp-12 wk-tab-12 wk-mobile-12 side">
-                                    <img class="sideImg" src="/images/about-2.jpg" alt="img">
+                                    <img class="sideImg" src="/images/img4.jpeg" alt="img">
                                 </div>
                                 <div class="responsive-cell-block wk-desk-12 wk-ipadp-12 wk-tab-12 wk-mobile-12 side">
-                                    <img class="sideImg" src="/images/about-3.jpg" alt="img">
+                                    <img class="sideImg" src="/images/img7.jpeg" alt="img">
                                 </div>
                             </div>
                         </div>
