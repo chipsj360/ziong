@@ -69,7 +69,7 @@ public class SecurityConfig {
                         .dispatcherTypeMatchers(DispatcherType.FORWARD).permitAll()
                         .requestMatchers("/css/**", "/images/**","/logout", "/", "/signup", "/process-register", "/register_success", "/js/**","/favicon.ico")
                         .permitAll()
-                        .requestMatchers("/products/**","/products-in-category/**", "/product_detail/**","/product-search/**")
+                        .requestMatchers("/products/**","/products-in-category/**", "/product_detail/**","/product-search/**","/forgot-password","/reset-password")
                         .permitAll()
                         .requestMatchers("/account","/change-password","/update-profile").authenticated()
                         .requestMatchers("/dashboard", "/customers", "/process_product","/delete-product/**","/findById/**","/delete-category/**")

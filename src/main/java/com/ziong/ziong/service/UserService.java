@@ -1,5 +1,6 @@
 package com.ziong.ziong.service;
 
+import com.ziong.ziong.exceptions.CustomerNotFoundException;
 import com.ziong.ziong.model.User;
 import com.ziong.ziong.model.dtos.UserDto;
 import com.ziong.ziong.respository.RoleRepository;
@@ -52,6 +53,27 @@ public class UserService {
         user.setLastName(customerDto.getLastName());
         user.setEmail(customerDto.getEmail());
         return userRepository.save(user);
+    }
+
+    public void updatePassword(User user, String newPassword) {
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String encodedPassword = passwordEncoder.encode(newPassword);
+        user.setPassword(encodedPassword);
+
+        user.setResetPasswordToken(null);
+        userRepository.save(user);
+    }
+    public void updateResetPasswordToken(String token, String email) throws CustomerNotFoundException {
+        User user = userRepository.findByEmail(email);
+        if (user != null) {
+            user.setResetPasswordToken(token);
+            userRepository.save(user);
+        } else {
+            throw new CustomerNotFoundException("Could not find any customer with the email " + email);
+        }
+    }
+    public User getByResetPasswordToken(String token) {
+        return userRepository.findByResetPasswordToken(token);
     }
     public User findByEmail(String email) {
         return userRepository.findByEmail(email);

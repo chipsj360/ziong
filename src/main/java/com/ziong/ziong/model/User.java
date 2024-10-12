@@ -34,6 +34,7 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
     private Set<Role> roles = new HashSet<>();
+    private String resetPasswordToken;
     public void setRoles(List<Role> newRoles) {
         roles.clear();
         roles.addAll(newRoles);

@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="/css/customNavbar.css">
     <link rel="stylesheet" href="/offcanvas-navbar.css">
     <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/products-in-category.css">
 
 </head>
 
@@ -112,7 +113,7 @@
                         </div>
                         <div class="d-flex justify-content-between w-100 nav-item p-2 pb-0" th:each="category : ${categories}">
 
-                            <a  class="nav-item" th:href="@{/products-in-category/{id}(id = ${category.categoryId})}" >[[${category.categoryName}]] </a>
+                            <a  class="list-group-item list-group-item-action" th:href="@{/products-in-category/{id}(id = ${category.categoryId})}" >[[${category.categoryName}]] </a>
                         </div>
 
                     </div>
