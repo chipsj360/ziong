@@ -87,6 +87,11 @@
 			<artifactId>spring-boot-starter-mail</artifactId>
 			<version>3.3.4</version>
 		</dependency>
+		<dependency>
+			<groupId>net.bytebuddy</groupId>
+			<artifactId>byte-buddy</artifactId>
+			<version>1.12.20</version>
+		</dependency>
 	</dependencies>
 
 	<build>
