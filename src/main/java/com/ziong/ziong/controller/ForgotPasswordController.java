@@ -58,12 +58,12 @@ public class ForgotPasswordController {
         MimeMessage message = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message);
 
-        helper.setFrom("contact@zedshop.com", "Zedshop Support");
+        helper.setFrom("contact@ziong.com", "ziongshop Support");
         helper.setTo(recipientEmail);
 
         String subject = "Here's the link to reset your password";
 
-        String content = "<p>Hello Zedshopper,</p>"
+        String content = "<p>Hello Ziong Shopper,</p>"
                 + "<p>You have requested to reset your password.</p>"
                 + "<p>Click the link below to change your password:</p>"
                 + "<p><a href=\"" + link + "\">Change my password</a></p>"
