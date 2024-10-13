@@ -217,6 +217,9 @@
                                     <th scope="col">Category Name</th>
                                     <th scope="col">Edit Category Name</th>
                                     <th scope="col">Action</th>
+                                    <th scope="col">Update</th>
+                                    <th scope="col">Delete</th>
+                                    <th scope="col">Enable</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -231,8 +234,16 @@
                                                 class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal" data-whatever="@mdo">Update</button>
                                     </td>
                                     <td>
-                                        <a th:if = "${category.is_activated} == true" th:href="@{/delete-category/{id} (id = ${category.id})}" class="btn btn-warning">Deleted</a>
-                                        <a th:if = "${category.is_activated} == false" th:href="@{/enable-category/(id = ${category.id})}" class="btn btn-primary">Enabled</a>
+                                        <a th:if = "${!category.is_deleted && category.is_activated}" th:href="@{/delete-category/{id} (id = ${category.id})}" class="btn btn-warning">Deleted</a>
+                                        <button class="btn btn-secondary"
+                                        disabled th:unless="${!category.is_deleted && category.is_activated}">Delete
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <a th:if = "${category.is_deleted || !category.is_activated}" th:href="@{/enable-category/(id = ${category.id})}" class="btn btn-primary">Enabled</a>
+                                        <button class="btn btn-secondary"
+                                        disabled th:unless="${category.is_deleted || !category.is_activated}">Enable
+                                        </button>
                                     </td>
                                 </tr>
                                 </tbody>
