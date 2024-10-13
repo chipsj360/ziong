@@ -45,7 +45,7 @@
         <div class="sidebar-logo">
             <!-- Logo Header -->
             <div class="logo-header" data-background-color="dark">
-                <a href="index.html" class="logo">
+                <a th:href="@{/}" class="logo">
                     <img
                             src="/images/logo.jpeg"
                             alt="navbar brand"
@@ -215,8 +215,6 @@
                                 <tr>
                                     <th scope="col">Category Index</th>
                                     <th scope="col">Category Name</th>
-                                    <th scope="col">Edit Category Name</th>
-                                    <th scope="col">Action</th>
                                     <th scope="col">Update</th>
                                     <th scope="col">Delete</th>
                                     <th scope="col">Enable</th>
@@ -240,7 +238,7 @@
                                         </button>
                                     </td>
                                     <td>
-                                        <a th:if = "${category.is_deleted || !category.is_activated}" th:href="@{/enable-category/(id = ${category.id})}" class="btn btn-primary">Enabled</a>
+                                        <a th:if = "${category.is_deleted || !category.is_activated}" th:href="@{/enable-category/{id} (id = ${category.id})}" class="btn btn-primary">Enabled</a>
                                         <button class="btn btn-secondary"
                                         disabled th:unless="${category.is_deleted || !category.is_activated}">Enable
                                         </button>

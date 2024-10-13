@@ -82,5 +82,15 @@ public class CategoryController {
         }
         return "redirect:/categories";
     }
-
+    @RequestMapping(value = "/enable-category/{id}", method = {RequestMethod.PUT, RequestMethod.GET})
+    public String enable(@PathVariable("id") Long id, RedirectAttributes attributes){
+        try {
+            categoryService.enabledById(id);
+            attributes.addFlashAttribute("success", "Enabled successfully");
+        }catch (Exception e){
+            e.printStackTrace();
+            attributes.addFlashAttribute("failed", "Failed to enabled");
+        }
+        return "redirect:/categories";
+    }
 }
