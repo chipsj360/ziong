@@ -54,9 +54,11 @@ public class CategoryController {
     }
 
     @PostMapping ("/update-category/{id}")
-    public String update(@PathVariable("id") Long id,  RedirectAttributes attributes){
+    public String update(@PathVariable("id") Long id, @RequestParam("name") String name, RedirectAttributes attributes){
         try {
             Category category =categoryService.findById(id);
+
+            category.setName(name);
             categoryService.update(category);
 
             attributes.addFlashAttribute("success","Updated successfully");
