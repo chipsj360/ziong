@@ -1,0 +1,40 @@
+version: '3.8'
+services:
+  # MySQL Database Service
+  mysql-db:
+    image: mysql:8.0
+    environment:
+      MYSQL_DATABASE: ziong
+      MYSQL_USER: root
+      MYSQL_PASSWORD: Kapz.kapz123
+      MYSQL_ROOT_PASSWORD: Kapz.kapz123
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql  # Persist MySQL data
+
+  # Spring Boot Application Service
+  spring-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      SPRING_APPLICATION_NAME: ziong
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/ziong_db
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: password
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_DATASOURCE_DRIVER_CLASS_NAME: com.mysql.cj.jdbc.Driver
+      SPRING_MAIL_HOST: smtp.gmail.com
+      SPRING_MAIL_USERNAME: user@gmail.com
+      SPRING_MAIL_PASSWORD: password
+      SPRING_MAIL_PORT: 587
+      SPRING_MAIL_PROPERTIES_MAIL_SMTP_AUTH: true
+      SPRING_MAIL_PROPERTIES_MAIL_SMTP_STARTTLS_ENABLE: true
+    ports:
+      - "8080:8080"  # Map Spring Boot port to host
+    depends_on:
+      - mysql-db
+
+volumes:
+  mysql-data:
