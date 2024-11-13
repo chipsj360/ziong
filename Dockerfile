@@ -5,7 +5,7 @@ FROM openjdk:17-jdk-alpine
 WORKDIR /app
 
 # Copy the application jar file to the container
-COPY src/ziong.jar app.jar
+COPY src/ziong-0.0.1-SNAPSHOT app.jar
 
 # Expose the port your Spring Boot app will run on (typically 8080)
 EXPOSE 8080
