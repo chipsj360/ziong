@@ -26,7 +26,7 @@
      aria-label="Main navigation">
     <div class="container-fluid">
         <div class="navbar-brand">
-            <img src="" alt="" class="logo ">
+            <img src="../images/logo.jpeg" alt="" class="logo ">
         </div>
 
         <button class="navbar-toggler align-content-ri p-0" type="button" id="navbarSideCollapse"
@@ -39,7 +39,6 @@
                 <li class="nav-item">
                     <a class="nav-link active" th:href="@{/}">Home</a>
                 </li>
-
                 <li class="nav-item">
                     <a class="nav-link active" th:href="@{/products}">Products</a>
                 </li>
@@ -49,8 +48,7 @@
                 <li class="nav-item px-3 d-flex">
                     <a class="nav-link position-relative" th:href="@{/cart}">
                         <i class="fa fa-shopping-cart"></i>
-                        <span
-                                class="position-absolute top-0 start-100 translate-middle rounded-pill badge bg-secondary badge-pill">[[${session.totalItems == null} ? '0' : ${session.totalItems}]]</span>
+                        <span class="position-absolute top-0 start-100 translate-middle rounded-pill badge bg-secondary badge-pill">[[${session.totalItems == null} ? '0' : ${session.totalItems}]]</span>
                     </a>
                 </li>
                 <li class="nav-item dropdown" th:if="${#authorization.expression('isAuthenticated()')}">
