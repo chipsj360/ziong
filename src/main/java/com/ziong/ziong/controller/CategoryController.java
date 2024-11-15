@@ -54,9 +54,11 @@ public class CategoryController {
     }
 
     @PostMapping ("/update-category/{id}")
-    public String update(@PathVariable("id") Long id,  RedirectAttributes attributes){
+    public String update(@PathVariable("id") Long id, @RequestParam("name") String name, RedirectAttributes attributes){
         try {
             Category category =categoryService.findById(id);
+
+            category.setName(name);
             categoryService.update(category);
 
             attributes.addFlashAttribute("success","Updated successfully");
@@ -82,5 +84,15 @@ public class CategoryController {
         }
         return "redirect:/categories";
     }
-
+    @RequestMapping(value = "/enable-category/{id}", method = {RequestMethod.PUT, RequestMethod.GET})
+    public String enable(@PathVariable("id") Long id, RedirectAttributes attributes){
+        try {
+            categoryService.enabledById(id);
+            attributes.addFlashAttribute("success", "Enabled successfully");
+        }catch (Exception e){
+            e.printStackTrace();
+            attributes.addFlashAttribute("failed", "Failed to enabled");
+        }
+        return "redirect:/categories";
+    }
 }

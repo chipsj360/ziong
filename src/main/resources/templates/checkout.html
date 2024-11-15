@@ -22,7 +22,7 @@
                         <p th:text="'Hey ' +${user.firstName}" id="" ></p>
                     </h2>
                     <p class="fs-sm">
-                        This is an invoice for your payments of <strong>[[${cart.totalPrices}]]</strong> you made to ZIONG for the
+                        This is an invoice for your payments of K<strong>[[${cart.totalPrices}]]</strong> you made to ZIONG for the
                         products listed.
                     </p>
 
@@ -76,14 +76,14 @@
                     </table>
 
                     <div class="mt-5">
-                        <div class="d-flex justify-content-end">
-                            <p class="text-muted me-3">Subtotal:</p>
-                            <span>K390.00</span>
-                        </div>
-                        <div class="d-flex justify-content-end">
-                            <p class="text-muted me-3">Discount:</p>
-                            <span>-K40.00</span>
-                        </div>
+<!--                        <div class="d-flex justify-content-end">-->
+<!--                            <p class="text-muted me-3">Subtotal:</p>-->
+<!--                            <span>K390.00</span>-->
+<!--                        </div>-->
+<!--                        <div class="d-flex justify-content-end">-->
+<!--                            <p class="text-muted me-3">Discount:</p>-->
+<!--                            <span>-K40.00</span>-->
+<!--                        </div>-->
                         <div class="d-flex justify-content-end mt-3">
                             <h5 class="me-3">Total:</h5>
                             <h5 class="text-success">[[${cart.totalPrices}]]</h5>
