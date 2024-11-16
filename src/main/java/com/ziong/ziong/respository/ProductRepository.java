@@ -1,6 +1,7 @@
 package com.ziong.ziong.respository;
 
 import com.ziong.ziong.model.Product;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -13,4 +14,7 @@ public interface ProductRepository extends JpaRepository<Product,Long> {
     List<Product> getProductsInCategory(Long categoryId);
     @Query("select p from Product p where p.name like %?1% or p.description like %?1%")
     List<Product> searchProducts(String keyword);
+    @Query("select p from Product p where p.is_deleted = false and p.is_activated = true order by p.createdAt desc")
+    List<Product> findTop3ByOrderByDateFieldDesc(Pageable pageable);
+
 }

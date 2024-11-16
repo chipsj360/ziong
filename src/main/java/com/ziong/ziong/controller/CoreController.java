@@ -24,9 +24,23 @@ public class CoreController {
     @Autowired
     ProductService productService;
 
+//    @GetMapping("/")
+//    public String index(Model model){
+//        List<Product>products= productService.getAllProduct();
+//        products.forEach(product -> {
+//            if (product.getImage() != null) {
+//                String base64Image = Base64.getEncoder().encodeToString(product.getImage());
+//                product.setBase64Image(base64Image);
+//            }
+//        });
+//
+//        model.addAttribute("products", products);
+//        return "index";
+//    }
+
     @GetMapping("/")
-    public String index(Model model){
-        List<Product>products= productService.getAllProduct();
+    public String index(Model model) {
+        List<Product> products = productService.getRecentProducts();
         products.forEach(product -> {
             if (product.getImage() != null) {
                 String base64Image = Base64.getEncoder().encodeToString(product.getImage());
@@ -37,6 +51,7 @@ public class CoreController {
         model.addAttribute("products", products);
         return "index";
     }
+
 
     @GetMapping("/login")
     public String login(){

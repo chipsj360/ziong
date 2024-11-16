@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -18,7 +20,6 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
-    private Date date;
     private String description;
     private String base64Image;
     private double costPrice;
@@ -38,4 +39,6 @@ public class Product {
 
     private boolean is_deleted;
     private boolean is_activated;
+    @Column(name = "created_at", nullable = false)
+    private LocalDateTime createdAt;
 }
