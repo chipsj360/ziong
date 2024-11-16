@@ -48,6 +48,9 @@
             <div class="row justify-content-center">
                 <div class="col-10 pt-5">
 
+                    <div th:if="${success}" class="text-center alert alert-success">
+                        <p th:text="${success}"></p>
+                    </div>
 
                     <div th:if = "${param.error}" class="text-center alert alert-warning">
                         <p>Invalid username or password</p>
