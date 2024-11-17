@@ -100,7 +100,7 @@ public class OrderController {
                 }
 
                 emailContent.append("\nTotal: K" + cart.getTotalPrices());
-
+                emailContent.append("\nPhone Number " +user.getContact());
                 // Send email to the company and cc the user
                 String fromEmail = user.getEmail();
                 String companyEmail = "josephchipate@gmail.com"; // Company email address
@@ -172,7 +172,7 @@ public class OrderController {
             emailContent.append(product.getName() + " - Price: K" + product.getCostPrice() + "\n");
 
             emailContent.append("\nTotal: K" + product.getCostPrice());
-
+            emailContent.append("\n Phone Number " +user.getContact());
             // Send email to the company and cc the user
             String fromEmail = user.getEmail();
             String companyEmail = "josephchipate@gmail.com"; // Company email address
