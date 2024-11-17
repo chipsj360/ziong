@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.Principal;
 
@@ -70,7 +71,7 @@ public class OrderController {
 
 
     @GetMapping("/order")
-    public String order(Model model, Principal principal) {
+    public String order(Model model, Principal principal, RedirectAttributes redirectAttributes) {
         if (principal == null) {
             return "redirect:/login";
         }
@@ -116,14 +117,14 @@ public class OrderController {
 
                 // Save the updated cart
                 shoppingCartRepository.delete(cart);
-
+                redirectAttributes.addFlashAttribute("success", "Order placed successfully!");
 
             }
 
 
         }
 
-        return "redirect:/";
+        return "redirect:/products";
     }
 
 
@@ -144,7 +145,7 @@ public class OrderController {
 
 
     @RequestMapping(value="/save-direct-order/{id}", method = {RequestMethod.PUT, RequestMethod.GET})
-    public String directOrder(@PathVariable("id") Long id, Principal principal, Model model) {
+    public String directOrder(@PathVariable("id") Long id, Principal principal, Model model, RedirectAttributes redirectAttributes) {
         if (principal == null) {
             return "redirect:/login";
         }
@@ -180,9 +181,10 @@ public class OrderController {
             // Add user and product information to the model for the view
             model.addAttribute("user", user);
             model.addAttribute("product", product);
+            redirectAttributes.addFlashAttribute("success", "Order placed successfully!");
         }
 
-        return "redirect:/"; // Return the checkout view or another appropriate view
+        return "redirect:/products"; // Return the checkout view or another appropriate view
     }
 
 }

@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.Base64;
 import java.util.List;
@@ -23,9 +24,23 @@ public class CoreController {
     @Autowired
     ProductService productService;
 
+//    @GetMapping("/")
+//    public String index(Model model){
+//        List<Product>products= productService.getAllProduct();
+//        products.forEach(product -> {
+//            if (product.getImage() != null) {
+//                String base64Image = Base64.getEncoder().encodeToString(product.getImage());
+//                product.setBase64Image(base64Image);
+//            }
+//        });
+//
+//        model.addAttribute("products", products);
+//        return "index";
+//    }
+
     @GetMapping("/")
-    public String index(Model model){
-        List<Product>products= productService.getAllProduct();
+    public String index(Model model) {
+        List<Product> products = productService.getRecentProducts();
         products.forEach(product -> {
             if (product.getImage() != null) {
                 String base64Image = Base64.getEncoder().encodeToString(product.getImage());
@@ -36,6 +51,7 @@ public class CoreController {
         model.addAttribute("products", products);
         return "index";
     }
+
 
     @GetMapping("/login")
     public String login(){
@@ -48,7 +64,7 @@ public class CoreController {
     }
 
     @PostMapping("/process-register")
-    public String processUser(@ModelAttribute("user") User user,Model model){
+    public String processUser(@ModelAttribute("user") User user, Model model, RedirectAttributes redirectAttributes){
         if(userService.isEmailExists(user.getEmail())){
             model.addAttribute("emailExists", true);
             return "signup";
@@ -58,7 +74,9 @@ public class CoreController {
         }
 
         else{
-            return userService.adduser(user);
+            userService.adduser(user);
+            redirectAttributes.addFlashAttribute("success", "Registration successful! Please log in.");
+            return "redirect:/login"; // Redirect to the login page
         }
 
     }

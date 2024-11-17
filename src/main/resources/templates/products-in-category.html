@@ -15,6 +15,11 @@
     <link rel="stylesheet" href="/css/products-in-category.css">
     <link rel="stylesheet" href="/offcanvas-navbar.css">
     <link rel="stylesheet" href="/css/index.css">
+    <style>
+        .flash-messages {
+          margin-top: 80px; /* Adjust this value based on your navbar's height */
+        }
+    </style>
 
 </head>
 
@@ -70,6 +75,19 @@
         </div>
     </div>
 </nav>
+<div class="d-flex justify-content-center align-items-center">
+    <div class="flash-messages col-6 col-md-6">
+        <div th:if="${success}" class="alert alert-success text-center" role="alert">
+            <p th:text="${success}"></p>
+        </div>
+        <div th:if="${error}" class="alert alert-danger text-center" role="alert">
+            <p th:text="${error}"></p>
+        </div>
+    </div>
+</div>
+
+
+
 <div class="main-container">
     <div class="container mt-5">
         <br />

@@ -8,11 +8,15 @@ import com.ziong.ziong.respository.CategoryRepository;
 import com.ziong.ziong.respository.ProductRepository;
 import com.ziong.ziong.utils.ImageUpload;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
@@ -53,6 +57,7 @@ public class ProductService {
         p.setCategory(category);
         p.set_activated(true);
         p.set_deleted(false);
+        p.setCreatedAt(LocalDateTime.now());
         User user = userService.getUserByUsername(username);
         p.setUser(user);
 
@@ -92,6 +97,11 @@ public class ProductService {
         productDto.setActivated(product.is_activated());
         return productDto;
     }
+    public List<Product> getRecentProducts() {
+        Pageable pageable = PageRequest.of(0, 3); // Fetch top 3 products
+        return repo.findTop3ByOrderByDateFieldDesc(pageable);
+    }
+
     public List<Product> getAllProduct()
     {
         return repo.findAll();
