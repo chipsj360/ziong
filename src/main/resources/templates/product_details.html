@@ -83,10 +83,10 @@
     <div class="hot-deals d-flex flex-column p-5">
         <div class="card p-4 d-flex flex-column justify-content-center">
             <div class="row d-flex">
-                <div class="col-6 d-flex flex-column justify-content-center list-img">
+                <div class="col-12 col-md-6 d-flex flex-column justify-content-center list-img">
                     <img class="list-item-img" th:src="'data:image/jpeg;base64,' + ${product.base64Image}"  >
                 </div>
-                <div class="col-6">
+                <div class="col-12 col-md-6">
                     <div class="p-3">
                         <h4>[[*{product.name}]]</h4>
                         <hr>
@@ -101,7 +101,7 @@
                             <form th:action="@{/add-to-cart}" method="post" >
 
                                 <input type="hidden" th:value="${product.id}" name="id">
-                            <button class="prod-btn m-2" role="button" type="submit"> Add to Cart <i class="bi bi-cart2"></i></button>
+                            <button class="prod-btn m-2" role="button" type="submit"> Add <i class="bi bi-cart2"></i></button>
                             </form>
                         </div>
                         <hr>

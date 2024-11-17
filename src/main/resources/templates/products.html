@@ -39,119 +39,58 @@
 </head>
 <body>
 <div class="wrapper">
-    <!-- Sidebar -->
-    <div class="sidebar" data-background-color="dark">
-        <div class="sidebar-logo">
-            <!-- Logo Header -->
-            <div class="logo-header" data-background-color="dark">
-                <a th:href="@{/}" class="logo">
-                    <img
-                            src="/images/logo.jpeg"
-                            alt="navbar brand"
-                            class="navbar-brand"
-                            height="20"
-                    />
-                </a>
-                <div class="nav-toggle">
-                    <button class="btn btn-toggle toggle-sidebar">
-                        <i class="gg-menu-right"></i>
-                    </button>
-                    <button class="btn btn-toggle sidenav-toggler">
-                        <i class="gg-menu-left"></i>
-                    </button>
-                </div>
-                <button class="topbar-toggler more">
-                    <i class="gg-more-vertical-alt"></i>
-                </button>
+    <nav class="navbar navbar-expand-lg fixed-top navbar-light  shadow mb-4" style="background-color: #8490A3;"
+         aria-label="Main navigation">
+        <div class="container-fluid">
+            <div class="navbar-brand">
+
+                <img src="../images/logo.jpeg" alt="" class="logo ">
             </div>
-            <!-- End Logo Header -->
-        </div>
-        <div class="sidebar-wrapper scrollbar scrollbar-inner">
-            <div class="sidebar-content">
-                <ul class="nav nav-secondary">
-                    <li class="nav-item active">
-                        <a
-                                data-bs-toggle="collapse"
-                                href="#dashboard"
-                                class="collapsed"
-                                aria-expanded="false"
-                        >
-                            <i class="fas fa-home"></i>
-                            <p>Dashboard</p>
-                        </a>
 
-                    </li>
-                    <li class="nav-section">
-                <span class="sidebar-mini-icon">
-                  <i class="fa fa-ellipsis-h"></i>
-                </span>
-                        <h4 class="text-section">Components</h4>
-                    </li>
-                    <li class="nav-item">
-                        <a data-bs-toggle="collapse" href="#base">
-                            <i class="fas fa-layer-group"></i>
-                            <p>Products</p>
-                            <span class="caret"></span>
-                        </a>
-                        <div class="collapse" id="base">
-                            <ul class="nav nav-collapse">
-                                <li>
-                                    <a th:href="@{/upload-products}">
-                                        <span class="sub-item">Add Product</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a th:href="@{/view-products}">
-                                        <span class="sub-item">View Product</span>
-                                    </a>
-                                </li>
+            <button class="navbar-toggler align-content-ri p-0" type="button" id="navbarSideCollapse"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon custom-toggler"> </span>
+            </button>
 
-                            </ul>
-                        </div>
-                    </li>
+            <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a th:href="@{/categories}">
-                            <i class="fas fa-file"></i>
-                            <p>Categories</p>
-
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a data-bs-toggle="collapse" href="#charts">
-                            <i class="far fa-chart-bar"></i>
-                            <p>Charts</p>
-                            <span class="caret"></span>
-                        </a>
-                        <div class="collapse" id="charts">
-                            <ul class="nav nav-collapse">
-                                <li>
-                                    <a href="charts/charts.html">
-                                        <span class="sub-item">Chart Js</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="charts/sparkline.html">
-                                        <span class="sub-item">Sparkline</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
+                        <a class="nav-link active" th:href="@{/}">Home</a>
                     </li>
 
                     <li class="nav-item">
-                        <a href="../../documentation/index.html">
-                            <i class="fas fa-file"></i>
-                            <p>Documentation</p>
-                            <span class="badge badge-secondary">1</span>
+                        <a class="nav-link active" th:href="@{/products}">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <button type="submit" class="btn btn-secondary btn-block contactUsBtn">Contact Us</button>
+                    </li>
+                    <li class="nav-item px-3 d-flex">
+                        <a class="nav-link position-relative" th:href="@{/cart}">
+                            <i class="fa fa-shopping-cart"></i>
+                            <span
+                                    class="position-absolute top-0 start-100 translate-middle rounded-pill badge bg-secondary badge-pill">[[${session.totalItems == null} ? '0' : ${session.totalItems}]]</span>
                         </a>
                     </li>
-
+                    <li class="nav-item dropdown" th:if="${#authorization.expression('isAuthenticated()')}">
+                        <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button"
+                           data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa fa-user-circle-o me-2"></i><span th:text="${#authentication.name}"></span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end w-220px" aria-labelledby="profileDropdown">
+                            <li><a th:href="@{/account}" class="dropdown-item">Profile</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" th:href="@{/logout}">Logout</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item" th:unless="${#authorization.expression('isAuthenticated()')}">
+                        <a  th:href="@{/login}" class="nav-link active">Login</a>
+                    </li>
                 </ul>
             </div>
         </div>
-    </div>
-    <!-- End Sidebar -->
-    <!-- End Sidebar -->
+    </nav>
 
     <div class="main-panel">
         <div class="main-header">
