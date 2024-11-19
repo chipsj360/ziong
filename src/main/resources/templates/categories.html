@@ -7,8 +7,6 @@
             content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
             name="viewport"
     />
-    <link rel="stylesheet" href="/css/customNavbar.css">
-    <link rel="stylesheet" href="/css/offcanvas-navbar.css">
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
 
 
@@ -236,13 +234,13 @@
                                     <td>
                                         <a th:if = "${!category.is_deleted && category.is_activated}" th:href="@{/delete-category/{id} (id = ${category.id})}" class="btn btn-warning">Deleted</a>
                                         <button class="btn btn-secondary"
-                                        disabled th:unless="${!category.is_deleted && category.is_activated}">Delete
+                                                disabled th:unless="${!category.is_deleted && category.is_activated}">Delete
                                         </button>
                                     </td>
                                     <td>
                                         <a th:if = "${category.is_deleted || !category.is_activated}" th:href="@{/enable-category/{id} (id = ${category.id})}" class="btn btn-primary">Enabled</a>
                                         <button class="btn btn-secondary"
-                                        disabled th:unless="${category.is_deleted || !category.is_activated}">Enable
+                                                disabled th:unless="${category.is_deleted || !category.is_activated}">Enable
                                         </button>
                                     </td>
                                 </tr>
