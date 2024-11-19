@@ -16,7 +16,6 @@
     <link rel="stylesheet" href="/css/index.css">
     <link rel="stylesheet" href="/css/index-res.css">
     <link rel="stylesheet" href="/css/customNavbar.css">
-    <link href="/css/offcanvas-navbar.css" rel="stylesheet">
     <title>Cart</title>
 </head>
 <body>
@@ -168,5 +167,29 @@
 
 <!-- End of .container -->
 <script src="/js/offcanvas-navbar.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const navbarToggle = document.getElementById("navbarSideCollapse");
+        const offcanvasCollapse = document.querySelector(".offcanvas-collapse");
+
+        document.addEventListener("click", function (event) {
+            if (!offcanvasCollapse.contains(event.target) && !navbarToggle.contains(event.target)) {
+                offcanvasCollapse.classList.remove("open");
+            }
+        });
+    });
+</script>
+<script>
+    // Select all buttons with the class "contactUsBtn"
+     const contactUsButtons = document.querySelectorAll(".contactUsBtn");
+     const footerSection = document.getElementById("footerSection");
+
+     // Loop through each button and add a click event listener
+     contactUsButtons.forEach(function(button) {
+         button.addEventListener("click", function () {
+             footerSection.scrollIntoView({ behavior: "smooth" });
+         });
+     });
+</script>
 </body>
 </html>
