@@ -69,20 +69,27 @@ public class ProductController {
     }
 
 
-    @PostMapping("/update-product/{id}")
-    public String processUpdate(@PathVariable("id") Long id,
-                                @ModelAttribute("productDto") ProductDto productDto,
-                                RedirectAttributes attributes
-    ) {
-        try {
-            productService.update(productDto);
-            attributes.addFlashAttribute("success", "Update successfully!");
-        } catch (Exception e) {
-            e.printStackTrace();
-            attributes.addFlashAttribute("error", "Failed to update!");
+
+@PostMapping("/update-product/{id}")
+public String processUpdate(
+        @PathVariable("id") Long id,
+        @ModelAttribute("productDto") ProductDto productDto,
+        @RequestParam("imageProduct") MultipartFile imageFile,
+        RedirectAttributes attributes) {
+    try {
+        // Process image file if uploaded
+        if (!imageFile.isEmpty()) {
+            productDto.setImage(imageFile.getBytes());
         }
-        return "redirect:/dashboard";
+
+        productService.update(productDto);
+        attributes.addFlashAttribute("success", "Update successfully!");
+    } catch (Exception e) {
+        e.printStackTrace();
+        attributes.addFlashAttribute("error", "Failed to update!");
     }
+    return "redirect:/dashboard";
+}
 
     @GetMapping("/products-in-category/{id}")
     public String getProductsInCategory(@PathVariable("id") Long categoryId, Model model) {

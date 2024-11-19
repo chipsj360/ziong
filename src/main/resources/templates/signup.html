@@ -66,26 +66,26 @@
 
                         <!-- First Name input -->
                         <div data-mdb-input-init class="form-outline mb-4">
-                            <input type="text" id="registerFirstName" class="form-control" th:field="*{firstName}"/>
+                            <input type="text" id="registerFirstName" class="form-control" th:field="*{firstName}" required/>
                             <label class="form-label" for="registerFirstName">First Name</label>
                         </div>
                         <!-- Last Name input -->
                         <div data-mdb-input-init class="form-outline mb-4">
-                            <input type="text" id="registerLastName" class="form-control" th:field="*{lastName}" />
+                            <input type="text" id="registerLastName" class="form-control" th:field="*{lastName}" required/>
                             <label class="form-label" for="registerLastName">Last Name</label>
                         </div>
                         <!-- Username input -->
                         <div data-mdb-input-init class="form-outline mb-4">
-                            <input type="text" id="registerUsername" class="form-control" th:field="*{userName}" />
+                            <input type="text" id="registerUsername" class="form-control" th:field="*{userName}" required/>
                             <label class="form-label" for="registerUsername">Username</label>
                         </div>
                         <div data-mdb-input-init class="form-outline mb-4">
-                            <input type="text" id="registerContact" class="form-control" th:field="*{contact}" />
+                            <input type="text" id="registerContact" class="form-control" th:field="*{contact}" required/>
                             <label class="form-label" for="registerUsername">Phone Number</label>
                         </div>
                         <!-- Email input -->
                         <div data-mdb-input-init class="form-outline mb-4">
-                            <input type="email" id="registerEmail" class="form-control" th:field="*{email}"/>
+                            <input type="email" id="registerEmail" class="form-control" th:field="*{email}" required/>
                             <label class="form-label" for="registerEmail">Email</label>
                         </div>
                         <!-- Phone input -->
@@ -95,7 +95,7 @@
 <!--                        </div>-->
                         <!-- Password input -->
                         <div data-mdb-input-init class="form-outline mb-4">
-                            <input type="password" id="registerPassword" class="form-control" th:field="*{password}"/>
+                            <input type="password" id="registerPassword" class="form-control" th:field="*{password}" required/>
                             <label class="form-label" for="registerPassword">Password</label>
                         </div>
                         <!-- Repeat Password input -->

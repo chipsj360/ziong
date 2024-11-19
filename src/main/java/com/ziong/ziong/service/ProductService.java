@@ -64,23 +64,30 @@ public class ProductService {
         repo.save(p);
     }
 
-    public Product update (ProductDto productDto) {
-        try {
-            Product product = repo.getById(productDto.getId());
 
-            product.setName(productDto.getName());
-            product.setDescription(productDto.getDescription());
-            product.setSalePrice(productDto.getSalePrice());
-            product.setCostPrice(productDto.getCostPrice());
-            product.setCurrentQuantity(productDto.getCurrentQuantity());
-            product.setCategory(productDto.getCategory());
-            return repo.save(product);
-        }catch (Exception e){
-            e.printStackTrace();
-            return null;
+public Product update(ProductDto productDto) {
+    try {
+        Product product = repo.getById(productDto.getId());
+
+        // Update product fields
+        product.setName(productDto.getName());
+        product.setDescription(productDto.getDescription());
+        product.setSalePrice(productDto.getSalePrice());
+        product.setCostPrice(productDto.getCostPrice());
+        product.setCurrentQuantity(productDto.getCurrentQuantity());
+        product.setCategory(productDto.getCategory());
+
+        // Update the image only if a new image is provided
+        if (productDto.getImage() != null && productDto.getImage().length > 0) {
+            product.setImage(productDto.getImage());
         }
 
+        return repo.save(product);
+    } catch (Exception e) {
+        e.printStackTrace();
+        return null;
     }
+}
 
     public ProductDto getById(Long id) {
         Product product = repo.getById(id);

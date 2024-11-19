@@ -232,7 +232,7 @@
                                                 class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal" data-whatever="@mdo">Update</button>
                                     </td>
                                     <td>
-                                        <a th:if = "${!category.is_deleted && category.is_activated}" th:href="@{/delete-category/{id} (id = ${category.id})}" class="btn btn-warning">Deleted</a>
+                                        <a th:if = "${!category.is_deleted && category.is_activated}" th:href="@{/delete-category/{id} (id = ${category.id})}" class="btn btn-warning">Delete</a>
                                         <button class="btn btn-secondary"
                                                 disabled th:unless="${!category.is_deleted && category.is_activated}">Delete
                                         </button>
