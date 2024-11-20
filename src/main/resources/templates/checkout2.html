@@ -25,7 +25,10 @@
                         <p th:text="'Hey '+' '+${user.firstName}" id="" ></p>
                     </h2>
                         <div class="me-3">
-                        <img  src="../images/logo.jpeg" alt="" class="logo">
+                            <a th:href="@{/}">
+                                <img  src="../images/logo.jpeg" alt="" class="logo">
+                            </a>
+
                         </div>
                     </div>
                     <p class="fs-sm">
@@ -35,13 +38,13 @@
 
                     <div class="border-top border-gray-200 pt-4 mt-4">
                         <div class="row">
-                            <div class="col-md-6">
-                                <div class="text-muted mb-2">Payment No.</div>
-                                <strong>#88305</strong>
-                            </div>
-                            <div class="col-md-6 text-md-end">
+<!--                            <div class="col-md-6">-->
+<!--                                <div class="text-muted mb-2">Payment No.</div>-->
+<!--                                <strong>#88305</strong>-->
+<!--                            </div>-->
+                            <div class="col-md-6 text-md-start">
                                 <div class="text-muted mb-2">Payment Date</div>
-                                <strong>Feb/09/20</strong>
+                                <strong th:text="${currentDate}"></strong>
                             </div>
                         </div>
                     </div>

@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.Principal;
+import java.time.LocalDate;
 
 @Controller
 public class OrderController {
@@ -64,6 +65,7 @@ public class OrderController {
             }
             model.addAttribute("cart", cart);
         }
+        model.addAttribute("currentDate", LocalDate.now());
 
         return "checkout";
     }
@@ -140,6 +142,7 @@ public class OrderController {
         Product product = productService.getProductById(id);
         model.addAttribute("user", user);
         model.addAttribute("product", product);
+        model.addAttribute("currentDate", LocalDate.now());
         return "checkout2";
     }
 
