@@ -105,7 +105,7 @@ public class OrderController {
                 emailContent.append("\nPhone Number " +user.getContact());
                 // Send email to the company and cc the user
                 String fromEmail = user.getEmail();
-                String companyEmail = "josephchipate@gmail.com"; // Company email address
+                String companyEmail = "info@ziongltd.com"; // Company email address
                 emailService.sendOrderConfirmation(fromEmail, companyEmail, "New Order from " + user.getFirstName(), emailContent.toString());
 
                 // Remove items from the shopping cart
@@ -178,7 +178,7 @@ public class OrderController {
             emailContent.append("\n Phone Number " +user.getContact());
             // Send email to the company and cc the user
             String fromEmail = user.getEmail();
-            String companyEmail = "josephchipate@gmail.com"; // Company email address
+            String companyEmail = "info@ziongltd.com"; // Company email address
             emailService.sendOrderConfirmation(fromEmail, companyEmail, "New Order from " + user.getFirstName(), emailContent.toString());
 
             // Add user and product information to the model for the view
