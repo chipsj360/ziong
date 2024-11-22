@@ -6,7 +6,6 @@ services:
     environment:
       MYSQL_DATABASE: ziong_db
       MYSQL_USER: root
-      MYSQL_PASSWORD: password
       MYSQL_ROOT_PASSWORD: password
     ports:
       - "3306:3306"
