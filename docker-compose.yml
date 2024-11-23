@@ -30,8 +30,8 @@ services:
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
       SPRING_DATASOURCE_DRIVER_CLASS_NAME: com.mysql.cj.jdbc.Driver
       SPRING_MAIL_HOST: smtp.hostinger.com
-      SPRING_MAIL_USERNAME: info@ziongltd.com
-      SPRING_MAIL_PASSWORD: CBeat?8g@
+      SPRING_MAIL_USERNAME: user
+      SPRING_MAIL_PASSWORD: password
       SPRING_MAIL_PORT: 465
       SPRING_MAIL_PROPERTIES_MAIL_SMTP_AUTH: "true"
       SPRING_MAIL_PROPERTIES_MAIL_SMTP_STARTTLS_ENABLE: "true"
