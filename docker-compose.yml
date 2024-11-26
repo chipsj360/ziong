@@ -38,7 +38,7 @@ services:
       SPRING_MAIL_PROPERTIES_MAIL_SMTP_AUTH: "true"
       SPRING_MAIL_PROPERTIES_MAIL_SMTP_STARTTLS_ENABLE: "true"
     ports:
-      - "8080:8080"  # Map Spring Boot port to host
+      - "80:80"  # Map Spring Boot port to host
     depends_on:
       mysql-db:
         condition: service_healthy
