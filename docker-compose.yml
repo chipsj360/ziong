@@ -4,10 +4,10 @@ services:
   mysql-db:
     image: mysql:8.0
     environment:
-      MYSQL_ROOT_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: Ziong@2024
       MYSQL_DATABASE: ziong_db
-      MYSQL_USER: user
-      MYSQL_PASSWORD: password
+      MYSQL_USER: ziong
+      MYSQL_PASSWORD: Ziong@2024
     ports:
       - "3306:3306"
     volumes:
@@ -27,13 +27,13 @@ services:
     environment:
       SPRING_APPLICATION_NAME: ziong
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/ziong_db
-      SPRING_DATASOURCE_USERNAME: user
-      SPRING_DATASOURCE_PASSWORD: password
+      SPRING_DATASOURCE_USERNAME: ziong
+      SPRING_DATASOURCE_PASSWORD: Ziong@2024
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
       SPRING_DATASOURCE_DRIVER_CLASS_NAME: com.mysql.cj.jdbc.Driver
       SPRING_MAIL_HOST: smtp.hostinger.com
-      SPRING_MAIL_USERNAME: user@gmail
-      SPRING_MAIL_PASSWORD: password
+      SPRING_MAIL_USERNAME: info@ziongltd.com
+      SPRING_MAIL_PASSWORD: CBeat?8g@
       SPRING_MAIL_PORT: 465
       SPRING_MAIL_PROPERTIES_MAIL_SMTP_AUTH: "true"
       SPRING_MAIL_PROPERTIES_MAIL_SMTP_STARTTLS_ENABLE: "true"
