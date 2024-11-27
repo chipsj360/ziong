@@ -12,6 +12,7 @@ services:
       - "3306:3306"
     volumes:
       - ./my-new-data-dir:/var/lib/mysql  # Host-mounted directory for MySQL data
+      - ./my-custom-config:/etc/mysql/conf.d
     command: --pid-file=/tmp/mysqld.pid
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
@@ -44,5 +45,6 @@ services:
       mysql-db:
         condition: service_healthy
     restart: always
-
+volumes:
+  my-new-data-dir:
 # Removed the `mysql-data` volume as it is no longer used.
