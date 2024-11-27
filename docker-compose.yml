@@ -12,6 +12,7 @@ services:
       - "3306:3306"
     volumes:
       - ./my-new-data-dir:/var/lib/mysql  # Host-mounted directory for MySQL data
+    command: --pid-file=/tmp/mysqld.pid
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
       interval: 10s
