@@ -11,7 +11,7 @@ services:
     ports:
       - "3306:3306"
     volumes:
-      - mysql-data:/var/lib/mysql  # Persist MySQL data
+      - ./my-new-data-dir:/var/lib/mysql  # Host-mounted directory for MySQL data
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
       interval: 10s
@@ -38,11 +38,10 @@ services:
       SPRING_MAIL_PROPERTIES_MAIL_SMTP_AUTH: "true"
       SPRING_MAIL_PROPERTIES_MAIL_SMTP_STARTTLS_ENABLE: "true"
     ports:
-      - "80:80"  # Map Spring Boot port to host
+      - "443:443"  # Map Spring Boot port to host
     depends_on:
       mysql-db:
         condition: service_healthy
     restart: always
 
-volumes:
-  mysql-data:
+# Removed the `mysql-data` volume as it is no longer used.

@@ -8,7 +8,7 @@ WORKDIR /app
 COPY src/ziong.jar app.jar
 
 # Expose the port your Spring Boot app will run on (typically 80)
-EXPOSE 80
+EXPOSE 443
 
 # Run the Spring Boot application
 ENTRYPOINT ["java", "-jar", "app.jar"]
