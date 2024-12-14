@@ -123,19 +123,19 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>First Name</label>
-                                    <input type="text"  th:field="*{firstName}" class="form-control" name="firstName">
+                                    <input type="text"  th:field="*{firstName}" class="form-control" name="firstName" required>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Last Name</label>
-                                    <input type="text"  th:field="*{lastName}" class="form-control" name="lastName">
+                                    <input type="text"  th:field="*{lastName}" class="form-control" name="lastName" required>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Email</label>
-                                    <input type="email" class="form-control" th:field="*{email}" name="email">
+                                    <input type="email" class="form-control" th:field="*{email}" name="email" required>
                                 </div>
                             </div>
 
@@ -164,13 +164,13 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>New password</label>
-                                    <input type="password" name="newPassword" class="form-control">
+                                    <input type="password" name="newPassword" class="form-control" required>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Confirm new password</label>
-                                    <input type="password" name="repeatNewPassword" class="form-control">
+                                    <input type="password" name="repeatNewPassword" class="form-control" required>
                                 </div>
                             </div>
                         </div>
